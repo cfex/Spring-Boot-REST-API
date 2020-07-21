@@ -1,6 +1,7 @@
 package com.restapi.bookstore.bootstrap;
 
 import com.restapi.bookstore.model.Book;
+import com.restapi.bookstore.model.Category;
 import com.restapi.bookstore.model.Cover;
 import com.restapi.bookstore.model.User;
 import com.restapi.bookstore.repository.BookRepository;
@@ -28,10 +29,13 @@ public class DataLoader implements CommandLineRunner {
 
     private void loadData() {
 
-//        Category category = new Category();
-//        category.setDescription("Testing");
-//
-//        categoryRepository.save(category);
+        Category category1 = new Category();
+        category1.setDescription("Testing");
+
+        Category category2 = new Category();
+        category2.setDescription("Programming");
+
+
 
         Book book1 = new Book();
         book1.setTitle("First book");
@@ -39,6 +43,7 @@ public class DataLoader implements CommandLineRunner {
         book1.setPages(112);
         book1.setCover(Cover.SOFT_COVER);
         book1.setAuthor("Nenad");
+        book1.getCategories().add(category1);
 
         Book book2 = new Book();
         book2.setTitle("Second book");
@@ -46,6 +51,7 @@ public class DataLoader implements CommandLineRunner {
         book2.setPages(477);
         book2.setCover(Cover.SOFT_COVER);
         book2.setAuthor("Jovan");
+        book2.getCategories().add(category1);
 
         Book book3 = new Book();
         book3.setTitle("Third book");
@@ -53,6 +59,7 @@ public class DataLoader implements CommandLineRunner {
         book3.setPages(321);
         book3.setCover(Cover.SOFT_COVER);
         book3.setAuthor("Katarina");
+        book3.getCategories().add(category2);
 
         Book book4 = new Book();
         book4.setTitle("Fourth book");
@@ -60,10 +67,7 @@ public class DataLoader implements CommandLineRunner {
         book4.setPages(44);
         book4.setCover(Cover.SOFT_COVER);
         book4.setAuthor("Ivana");
-
-//        book1.getCategories().add(category);
-//        category.getBooks().add(book1);
-
+        book4.getCategories().add(category2);
 
         User user = new User();
         user.setFirstName("Nenad");
@@ -78,7 +82,10 @@ public class DataLoader implements CommandLineRunner {
         book3.setUser(user);
         book4.setUser(user);
 
+        userRepository.save(user);
+        categoryRepository.saveAll(Arrays.asList(category1, category2));
         bookRepository.saveAll(Arrays.asList(book1, book2, book3, book4));
+
 
     }
 }

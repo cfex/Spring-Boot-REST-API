@@ -1,6 +1,10 @@
 package com.restapi.bookstore.model;
 
-import lombok.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -20,5 +24,6 @@ public class Category {
     private String description;
 
     @ManyToMany(mappedBy = "categories", cascade = CascadeType.ALL)
+    @JsonIgnore
     private Set<Book> books;
 }
