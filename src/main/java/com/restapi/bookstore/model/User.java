@@ -1,5 +1,6 @@
 package com.restapi.bookstore.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.restapi.bookstore.config.Audit;
 import lombok.*;
 
@@ -31,5 +32,6 @@ public class User extends Audit<String> {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "book_id")
     )
+    @JsonIgnore
     private Set<Book> books = new HashSet<>();
 }

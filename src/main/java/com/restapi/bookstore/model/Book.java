@@ -1,5 +1,6 @@
 package com.restapi.bookstore.model;
 
+import com.restapi.bookstore.config.Audit;
 import lombok.*;
 
 import javax.persistence.*;
@@ -12,7 +13,7 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Book {
+public class Book extends Audit<String> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

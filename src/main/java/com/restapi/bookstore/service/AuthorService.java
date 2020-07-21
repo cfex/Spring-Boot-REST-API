@@ -1,4 +1,4 @@
 package com.restapi.bookstore.service;
 
-public class AuthorService {
+public interface AuthorService {
 }
