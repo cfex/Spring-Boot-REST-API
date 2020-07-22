@@ -18,6 +18,8 @@ import java.util.Arrays;
 @AllArgsConstructor
 public class DataLoader implements CommandLineRunner {
 
+    //TODO set profiles
+
     private final BookRepository bookRepository;
     private final UserRepository userRepository;
     private final CategoryRepository categoryRepository;

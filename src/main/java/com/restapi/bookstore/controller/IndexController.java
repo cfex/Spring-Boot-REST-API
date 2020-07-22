@@ -18,6 +18,8 @@ public class IndexController {
 
     @GetMapping(path = "/")
     public ResponseEntity<Page<Book>> index(Pageable pageable) {
+        //TODO check for empty set
+
        return ResponseEntity.status(HttpStatus.OK)
                .body(bookService.findAll(pageable));
     }
