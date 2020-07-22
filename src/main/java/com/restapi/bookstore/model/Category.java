@@ -26,4 +26,9 @@ public class Category {
     @ManyToMany(mappedBy = "categories", cascade = CascadeType.ALL)
     @JsonIgnore
     private Set<Book> books;
+
+    @Override
+    public String toString() {
+        return description;
+    }
 }
