@@ -32,12 +32,10 @@ public class DataLoader implements CommandLineRunner {
     private void loadData() {
 
         Category category1 = new Category();
-        category1.setDescription("Testing");
+        category1.setTitle("Testing");
 
         Category category2 = new Category();
-        category2.setDescription("Programming");
-
-
+        category2.setTitle("Programming");
 
         Book book1 = new Book();
         book1.setTitle("First book");
@@ -74,6 +72,8 @@ public class DataLoader implements CommandLineRunner {
         User user = new User();
         user.setFirstName("Nenad");
         user.setLastName("Jevtic");
+        user.setUserName("jevta");
+        user.setEmail("jevtic.nenad.jevta@gmail.com");
         user.getBooks().add(book1);
         user.getBooks().add(book2);
         user.getBooks().add(book3);

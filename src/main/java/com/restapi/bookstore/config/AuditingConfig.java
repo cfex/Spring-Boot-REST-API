@@ -13,10 +13,9 @@ public class AuditingConfig {
 
     @Bean
     public AuditorAware<String> auditorProvider() {
-        /*
-        / We can (and should) get name of currently logged user
-        / SecurityContextHolder.getContext().getAuthentication().getName()
-        */
+        //TODO
+        // SecurityContextHolder.getContext().getAuthentication().getName()
+
         return () -> Optional.ofNullable("Admin");
     }
 }

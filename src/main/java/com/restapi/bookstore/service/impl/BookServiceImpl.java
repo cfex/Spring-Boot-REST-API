@@ -33,11 +33,6 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public Page<Book> findAllByISBN(String isbn) {
-        return null;
-    }
-
-    @Override
     public Page<Book> findByAuthor(String author, Pageable pageable) {
        return bookRepository.findAllByAuthorContainingIgnoreCase(author, pageable);
     }

@@ -21,7 +21,7 @@ public class Category {
     private Long id;
 
     @Lob
-    private String description;
+    private String title;
 
     @ManyToMany(mappedBy = "categories", cascade = CascadeType.ALL)
     @JsonIgnore
@@ -29,6 +29,6 @@ public class Category {
 
     @Override
     public String toString() {
-        return description;
+        return title;
     }
 }

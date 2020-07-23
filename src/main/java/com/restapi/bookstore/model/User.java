@@ -3,6 +3,7 @@ package com.restapi.bookstore.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.restapi.bookstore.config.Audit;
 import lombok.*;
+import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -26,6 +27,13 @@ public class User extends Audit<String> {
 
     @Column(name = "last_name")
     private String lastName;
+
+    @Column(name = "user_name", unique = true)
+    private String userName;
+
+    @NaturalId
+    @Column(name = "email")
+    private String email;
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "user_books",
