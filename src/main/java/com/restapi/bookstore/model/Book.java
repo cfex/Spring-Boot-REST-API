@@ -25,8 +25,8 @@ public class Book extends Audit<String> {
     @Column(name = "title")
     private String title;
 
-    @Column(name = "description")
     @Lob
+    @Column(name = "description")
     private String description;
 
     @Column(name = "pages")

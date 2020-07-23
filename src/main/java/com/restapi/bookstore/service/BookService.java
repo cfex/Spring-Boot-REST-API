@@ -4,14 +4,14 @@ import com.restapi.bookstore.model.Book;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import java.util.Set;
 
 public interface BookService {
+    //TODO
+    // Page<Book> findAllByISBN(String isbn);
     Book save(Book book);
     Page<Book> findAll(Pageable pageable);
-    Page<Book> findByCategory(String category, Pageable pageable);
-    Set<Book> findAllByISBN(String isbn);
-    Set<Book> findByAuthor(String author);
     Page<Book> findByTitle(String title, Pageable pageable);
-    Set<Book> findByDescription(String description);
+    Page<Book> findByAuthor(String author, Pageable pageable);
+    Page<Book> findByCategory(String category, Pageable pageable);
+    Page<Book> findByDescription(String description, Pageable pageable);
 }

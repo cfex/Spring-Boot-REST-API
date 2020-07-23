@@ -6,12 +6,9 @@ import com.restapi.bookstore.service.BookService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
-import java.util.Set;
 
 @Slf4j
 @AllArgsConstructor
@@ -32,34 +29,27 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public Page<Book> findByCategory(String category, Pageable pageable) {
-        return bookRepository.findFirst10BooksByCategoriesOrderByTitleAsc(category, PageRequest.of(0, 10));
+        return bookRepository.findAllByCategoriesOrderByTitleAsc(category, pageable);
     }
 
     @Override
-    public Set<Book> findAllByISBN(String isbn) {
+    public Page<Book> findAllByISBN(String isbn) {
         return null;
     }
 
     @Override
-    public Set<Book> findByAuthor(String author) {
-        Set<Book> authorsBooks = new HashSet<>();
-
-        Set<Book> books =  bookRepository.findAllByAuthorIgnoreCaseContaining(author);
-        if(books.isEmpty()) {
-            throw new RuntimeException("No books were found");
-        }
-
-        books.iterator().forEachRemaining(authorsBooks::add);
-        return authorsBooks;
+    public Page<Book> findByAuthor(String author, Pageable pageable) {
+       return bookRepository.findAllByAuthorContainingIgnoreCase(author, pageable);
     }
 
     @Override
     public Page<Book> findByTitle(String title, Pageable pageable) {
-        return bookRepository.findAllByTitleIgnoreCaseContaining(title, pageable);
+        return bookRepository.findAllByTitleContainingIgnoreCase(title, pageable);
     }
 
+
     @Override
-    public Set<Book> findByDescription(String description) {
-        return bookRepository.findAllByDescriptionIgnoreCaseContaining(description);
+    public Page<Book> findByDescription(String description, Pageable pageable) {
+        return bookRepository.findAllByDescriptionStartingWithIgnoreCase(description, pageable);
     }
 }
