@@ -20,6 +20,7 @@ public class User extends Audit<String> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", updatable = false, nullable = false)
     private Long id;
 
     @Column(name = "first_name")
@@ -32,7 +33,7 @@ public class User extends Audit<String> {
     private String userName;
 
     @NaturalId
-    @Column(name = "email")
+    @Column(nullable = false, unique = true, name = "email")
     private String email;
 
     @OneToMany(cascade = CascadeType.ALL)
