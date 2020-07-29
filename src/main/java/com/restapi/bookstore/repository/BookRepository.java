@@ -8,9 +8,8 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface BookRepository  extends JpaRepository<Book, Long> {
-    Page<Book> findAll(Pageable pageable);
     Page<Book> findAllByTitleContainingIgnoreCase(String title, Pageable pageable);
     Page<Book> findAllByAuthorContainingIgnoreCase(String author, Pageable pageable);
-    Page<Book> findAllByCategoriesOrderByTitleAsc(String category, Pageable pageable);
-    Page<Book> findAllByDescriptionStartingWithIgnoreCase(String description, Pageable pageable);
+    Page<Book> findByCategories(Long id, Pageable pageable);
+    Page<Book> findAllByDescriptionContainingIgnoreCase(String description, Pageable pageable);
 }

@@ -1,19 +1,17 @@
 package com.restapi.bookstore.controller;
 
 import com.restapi.bookstore.model.Book;
+import com.restapi.bookstore.payload.BookPostRequest;
+import com.restapi.bookstore.payload.PageableResponse;
 import com.restapi.bookstore.service.BookService;
-import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Objects;
-
-
+import static com.restapi.bookstore.utils.RequestConstants.DEFAULT_PAGE_NUMBER;
+import static com.restapi.bookstore.utils.RequestConstants.DEFAULT_PAGE_SIZE;
 
 @AllArgsConstructor
 @RestController
@@ -23,94 +21,66 @@ public class BookController {
     private final BookService bookService;
 
     @GetMapping
-    public ResponseEntity<Page<Book>> findAll(Pageable pageable) {
-        if(bookService.findAll(pageable).stream().anyMatch(Objects::isNull)){
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }
+    public ResponseEntity<PageableResponse<Book>> findAll(
+            @RequestParam(value = "page", required = false,
+                    defaultValue = DEFAULT_PAGE_NUMBER) int page,
+            @RequestParam(value = "size", required = false,
+                    defaultValue = DEFAULT_PAGE_SIZE) int size) {
+        PageableResponse<Book> books = bookService.findAll(page, size);
 
-        return ResponseEntity.status(HttpStatus.OK)
-                .body(bookService.findAll(pageable));
+        return new ResponseEntity<>(books, HttpStatus.OK);
     }
 
     @PostMapping("/save")
-    public ResponseEntity<Book> saveBook(@NotNull @RequestBody Book requestBook) {
-        return ResponseEntity.status(HttpStatus.CREATED)
-                .body(bookService.save(requestBook));
+    public ResponseEntity<Book> saveBook(@Validated @RequestBody BookPostRequest requestBook) {
+        return null;
     }
 
 
-    @GetMapping("/findByAuthor/{author}")
-    public ResponseEntity<Page<Book>> findByAuthor(@PathVariable("author") String author,
-                                                   @RequestParam(required = false, defaultValue = "0") int page,
-                                                   @RequestParam(required = false, defaultValue = "10")int size) {
-        try {
-            PageRequest pageable = PageRequest.of(page, size);
+    @GetMapping("/findByAuthor")
+    public ResponseEntity<PageableResponse<Book>> findByAuthor(@RequestParam("author") String author,
+                                                               @RequestParam(value = "page", required = false,
+                                                                       defaultValue = DEFAULT_PAGE_NUMBER) int page,
+                                                               @RequestParam(value = "size", required = false,
+                                                                       defaultValue = DEFAULT_PAGE_SIZE) int size) {
 
-            if(author == null) {
-                return ResponseEntity.status(HttpStatus.OK)
-                        .body(bookService.findAll(pageable));
-            }
+       PageableResponse<Book> books = bookService.findByAuthor(author, page, size);
 
-            if(bookService.findByAuthor(author, pageable).isEmpty()){
-                return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
-            }
-
-            return ResponseEntity.status(HttpStatus.OK)
-                    .body(bookService.findByAuthor(author, pageable));
-
-        }catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
-        }
-
+        return new ResponseEntity<>(books, HttpStatus.OK);
     }
 
     @GetMapping("/findByTitle")
-    public ResponseEntity<Page<Book>> findByTitle(@RequestParam(required = false) String title,
-                                                 @RequestParam(defaultValue = "0") int page,
-                                                 @RequestParam(defaultValue = "10") int size) {
-        try{
-            PageRequest pageable = PageRequest.of(page, size);
+    public ResponseEntity<PageableResponse<Book>> findByTitle(@RequestParam(name = "title") String title,
+                                                              @RequestParam(value = "page", required = false,
+                                                                      defaultValue = DEFAULT_PAGE_NUMBER) int page,
+                                                              @RequestParam(value = "size", required = false,
+                                                                      defaultValue = DEFAULT_PAGE_SIZE) int size) {
 
-            if(title == null) {
-                return ResponseEntity.status(HttpStatus.OK)
-                        .body(bookService.findAll(pageable));
-            }
+        PageableResponse<Book> books = bookService.findByTitle(title, page, size);
 
-            if(bookService.findByTitle(title, pageable).isEmpty()){
-                return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
-            }
+        return  new ResponseEntity<>(books, HttpStatus.OK);
+    }
 
-            return ResponseEntity.status(HttpStatus.OK)
-                    .body(bookService.findByTitle(title, pageable));
+    @GetMapping("/findByCategory/{id}")
+    public ResponseEntity<PageableResponse<Book>> findByCategory(@PathVariable(name = "id") Long id,
+                                                                 @RequestParam(value = "page", required = false,
+                                                                         defaultValue = DEFAULT_PAGE_NUMBER) int page,
+                                                                 @RequestParam(value = "size", required = false,
+                                                                         defaultValue = DEFAULT_PAGE_SIZE) int size){
+        PageableResponse<Book> books = bookService.findByCategory(id, page, size);
 
-        }catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+        return new ResponseEntity<>(books, HttpStatus.OK);
     }
 
     @GetMapping("/findByDesc")
-    public ResponseEntity<Page<Book>> findByDesc(@RequestParam(required = false) String desc,
-                                                 @RequestParam(defaultValue = "0") int page,
-                                                 @RequestParam(defaultValue = "10") int size){
+    public ResponseEntity<PageableResponse<Book>> findByDesc(@RequestParam(required = false) String desc,
+                                                             @RequestParam(value = "page", required = false,
+                                                                     defaultValue = DEFAULT_PAGE_NUMBER) int page,
+                                                             @RequestParam(value = "size", required = false,
+                                                                     defaultValue = DEFAULT_PAGE_SIZE) int size){
+        PageableResponse<Book> books = bookService.findByDescription(desc, page, size);
 
-        try{
-            PageRequest pageable = PageRequest.of(page, size);
-
-            if(desc == null) {
-                return ResponseEntity.status(HttpStatus.OK)
-                        .body(bookService.findAll(pageable));
-            }
-
-            if(bookService.findByDescription(desc, pageable).isEmpty()){
-                return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
-            }
-
-            return ResponseEntity.status(HttpStatus.OK)
-                    .body(bookService.findByDescription(desc, pageable));
-
-        }catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+        return new ResponseEntity<>(books, HttpStatus.OK);
     }
 
 }
