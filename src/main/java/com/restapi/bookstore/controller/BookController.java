@@ -1,8 +1,8 @@
 package com.restapi.bookstore.controller;
 
-import com.restapi.bookstore.model.Book;
-import com.restapi.bookstore.payload.BookPostRequest;
-import com.restapi.bookstore.payload.PageableResponse;
+import com.restapi.bookstore.model.book.Book;
+import com.restapi.bookstore.payload.request.BookPostRequest;
+import com.restapi.bookstore.payload.response.PageableResponse;
 import com.restapi.bookstore.service.BookService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;

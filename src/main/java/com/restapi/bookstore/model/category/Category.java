@@ -1,6 +1,7 @@
-package com.restapi.bookstore.model;
+package com.restapi.bookstore.model.category;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.restapi.bookstore.model.book.Book;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

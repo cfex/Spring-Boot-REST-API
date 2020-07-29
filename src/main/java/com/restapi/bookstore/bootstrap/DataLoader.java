@@ -1,9 +1,9 @@
 package com.restapi.bookstore.bootstrap;
 
-import com.restapi.bookstore.model.Book;
-import com.restapi.bookstore.model.Category;
-import com.restapi.bookstore.model.Cover;
-import com.restapi.bookstore.model.User;
+import com.restapi.bookstore.model.book.Book;
+import com.restapi.bookstore.model.book.Cover;
+import com.restapi.bookstore.model.category.Category;
+import com.restapi.bookstore.model.user.User;
 import com.restapi.bookstore.repository.BookRepository;
 import com.restapi.bookstore.repository.CategoryRepository;
 import com.restapi.bookstore.repository.UserRepository;

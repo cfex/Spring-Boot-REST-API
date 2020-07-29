@@ -1,4 +1,4 @@
-package com.restapi.bookstore.payload;
+package com.restapi.bookstore.payload.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

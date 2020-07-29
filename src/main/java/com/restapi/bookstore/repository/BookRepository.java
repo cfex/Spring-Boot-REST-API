@@ -1,6 +1,6 @@
 package com.restapi.bookstore.repository;
 
-import com.restapi.bookstore.model.Book;
+import com.restapi.bookstore.model.book.Book;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

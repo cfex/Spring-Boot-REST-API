@@ -1,13 +1,13 @@
-package com.restapi.bookstore.model;
+package com.restapi.bookstore.model.user;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.restapi.bookstore.config.Audit;
+import com.restapi.bookstore.model.book.Book;
+import com.restapi.bookstore.model.role.Role;
 import lombok.*;
-import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @Getter
 @Setter
@@ -43,4 +43,26 @@ public class User extends Audit<String> {
     )
     @JsonIgnore
     private Set<Book> books = new HashSet<>();
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "user_role",
+            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
+    private List<Role> roles;
+
+    public List<Role> getRoles() {
+        if(roles == null) {
+            return null;
+        }
+
+        return new ArrayList<>(roles);
+    }
+
+    public void setRoles(List<Role> roles) {
+        if(roles == null) {
+            this.roles = null;
+        } else {
+            this.roles = Collections.unmodifiableList(roles);
+        }
+    }
 }

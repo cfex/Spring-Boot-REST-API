@@ -1,10 +1,10 @@
 package com.restapi.bookstore.service.impl;
 
-import com.restapi.bookstore.model.Book;
-import com.restapi.bookstore.model.Category;
-import com.restapi.bookstore.payload.BookPostRequest;
-import com.restapi.bookstore.payload.BookPostResponse;
-import com.restapi.bookstore.payload.PageableResponse;
+import com.restapi.bookstore.model.book.Book;
+import com.restapi.bookstore.model.category.Category;
+import com.restapi.bookstore.payload.request.BookPostRequest;
+import com.restapi.bookstore.payload.response.BookPostResponse;
+import com.restapi.bookstore.payload.response.PageableResponse;
 import com.restapi.bookstore.repository.BookRepository;
 import com.restapi.bookstore.repository.CategoryRepository;
 import com.restapi.bookstore.service.BookService;
