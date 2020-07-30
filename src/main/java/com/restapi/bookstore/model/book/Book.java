@@ -38,7 +38,8 @@ public class Book extends Audit<String> {
     @Enumerated(value = EnumType.STRING)
     private Cover cover;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
     private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
