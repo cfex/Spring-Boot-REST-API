@@ -22,6 +22,8 @@ import org.springframework.stereotype.Service;
 import java.util.Collections;
 import java.util.List;
 
+import static com.restapi.bookstore.utils.ApplicationUtilities.generateISBN;
+
 @Slf4j
 @AllArgsConstructor
 @Service
@@ -31,9 +33,31 @@ public class BookServiceImpl implements BookService {
     private final CategoryRepository categoryRepository;
 
     @Override
-    public BookPostResponse save(BookPostRequest book, UserPrincipal currentUser) {
+    public BookPostResponse save(BookPostRequest bookRequest, UserPrincipal currentUser) {
         //TODO Implement Spring Security
-        return null;
+        Category category = categoryRepository.findById(bookRequest.getCategoryId())
+                .orElseThrow(() -> new RuntimeException("No category found!"));
+
+        Book book = Book.builder()
+                .isbn(generateISBN())
+                .title(bookRequest.getTitle())
+                .description(bookRequest.getDescription())
+                .pages(bookRequest.getPages())
+                .author(bookRequest.getAuthor())
+                .cover(bookRequest.getCover())
+                .category(category)
+                .build();
+
+        Book addedBook = bookRepository.save(book);
+
+        return BookPostResponse.builder()
+                .isbn(addedBook.getIsbn())
+                .title(addedBook.getTitle())
+                .description(addedBook.getDescription())
+                .pages(addedBook.getPages())
+                .author(addedBook.getAuthor())
+                .category(addedBook.getCategory())
+                .build();
     }
 
     @Override
@@ -91,7 +115,7 @@ public class BookServiceImpl implements BookService {
 
         Pageable pageable = PageRequest.of(page, size, Sort.Direction.DESC, ApplicationConstants.CREATED_BY);
 
-        Page<Book> books = bookRepository.findByCategories(category.getId(), pageable);
+        Page<Book> books = bookRepository.findByCategory(category.getId(), pageable);
 
         List<Book> content = books.getNumberOfElements() == 0 ? Collections.emptyList() : books.getContent();
 

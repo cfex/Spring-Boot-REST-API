@@ -1,35 +1,20 @@
 package com.restapi.bookstore.payload.response;
 
+import com.restapi.bookstore.model.category.Category;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
-
 @Getter
 @Setter
+@Builder
 public class BookPostResponse {
 
+    private String isbn;
     private String title;
     private String description;
-    private String pages;
+    private int pages;
     private String author;
-    private Set<String> categories;
+    private Category category;
 
-    private Set<String> getCategories() {
-        if(categories == null){
-            return null;
-        }
-
-        return new HashSet<>(categories);
-    }
-
-    public void setCategories(Set<String> categories) {
-        if(categories == null) {
-            this.categories = null;
-        }
-
-        this.categories = Collections.unmodifiableSet(categories);
-    }
 }

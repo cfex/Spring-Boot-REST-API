@@ -44,7 +44,7 @@ public class DataLoader implements CommandLineRunner {
         book1.setPages(112);
         book1.setCover(Cover.SOFT_COVER);
         book1.setAuthor("Nenad");
-        book1.getCategories().add(category1);
+        book1.setCategory(category1);
 
         Book book2 = new Book();
         book2.setTitle("Second book");
@@ -52,7 +52,7 @@ public class DataLoader implements CommandLineRunner {
         book2.setPages(477);
         book2.setCover(Cover.SOFT_COVER);
         book2.setAuthor("Jovan");
-        book2.getCategories().add(category1);
+        book2.setCategory(category1);
 
         Book book3 = new Book();
         book3.setTitle("Third book");
@@ -60,7 +60,7 @@ public class DataLoader implements CommandLineRunner {
         book3.setPages(321);
         book3.setCover(Cover.SOFT_COVER);
         book3.setAuthor("Katarina");
-        book3.getCategories().add(category2);
+        book3.setCategory(category2);
 
         Book book4 = new Book();
         book4.setTitle("Fourth book");
@@ -68,7 +68,7 @@ public class DataLoader implements CommandLineRunner {
         book4.setPages(44);
         book4.setCover(Cover.SOFT_COVER);
         book4.setAuthor("Ivana");
-        book4.getCategories().add(category2);
+        book4.setCategory(category2);
 
         User user = new User();
         user.setFirstName("Nenad");
@@ -86,7 +86,8 @@ public class DataLoader implements CommandLineRunner {
         book4.setUser(user);
 
         userRepository.save(user);
-        categoryRepository.saveAll(Arrays.asList(category1, category2));
+        categoryRepository.save(category1);
+        categoryRepository.save(category2);
         bookRepository.saveAll(Arrays.asList(book1, book2, book3, book4));
 
 

@@ -24,7 +24,9 @@ public class Category {
     @Lob
     private String title;
 
-    @ManyToMany(mappedBy = "categories", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "category",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
     @JsonIgnore
     private Set<Book> books;
 

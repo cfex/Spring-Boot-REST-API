@@ -6,8 +6,6 @@ import com.restapi.bookstore.model.user.User;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
 
 @Getter
 @Setter
@@ -43,10 +41,7 @@ public class Book extends Audit<String> {
     @ManyToOne(cascade = CascadeType.ALL)
     private User user;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable( name = "book_category",
-            joinColumns = @JoinColumn(name = "book_id"),
-            inverseJoinColumns = @JoinColumn(name = "category_id")
-    )
-    private Set<Category> categories = new HashSet<>();
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "category_id")
+    private Category category;
 }
