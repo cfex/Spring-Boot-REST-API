@@ -7,14 +7,16 @@ import com.restapi.bookstore.model.role.Role;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
-@Getter
-@Setter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Getter
+@Setter
 @Table(name = "user")
 public class User extends Audit<String> {
 
@@ -46,9 +48,9 @@ public class User extends Audit<String> {
             inverseJoinColumns = @JoinColumn(name = "book_id")
     )
     @JsonIgnore
-    private Set<Book> books = new HashSet<>();
+    private List<Book> books;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany
     @JoinTable(name = "user_role",
             joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))

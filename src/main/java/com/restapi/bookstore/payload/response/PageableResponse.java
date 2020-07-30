@@ -31,8 +31,8 @@ public class PageableResponse<T> {
     public final void setContent(List<T> content) {
         if(content == null) {
             this.content = null;
+        }else {
+            this.content = Collections.unmodifiableList(content);
         }
-
-        this.content = Collections.unmodifiableList(content);
     }
 }

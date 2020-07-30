@@ -3,14 +3,17 @@ package com.restapi.bookstore.bootstrap;
 import com.restapi.bookstore.model.book.Book;
 import com.restapi.bookstore.model.book.Cover;
 import com.restapi.bookstore.model.category.Category;
+import com.restapi.bookstore.model.role.Role;
+import com.restapi.bookstore.model.role.RoleName;
+import com.restapi.bookstore.model.user.Address;
 import com.restapi.bookstore.model.user.User;
-import com.restapi.bookstore.repository.BookRepository;
-import com.restapi.bookstore.repository.CategoryRepository;
-import com.restapi.bookstore.repository.UserRepository;
+import com.restapi.bookstore.repository.*;
 import lombok.AllArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
+
+import java.util.Collections;
 
 import static com.restapi.bookstore.utils.ApplicationUtilities.generateISBN;
 
@@ -24,6 +27,8 @@ public class DataLoader implements CommandLineRunner {
     private final BookRepository bookRepository;
     private final UserRepository userRepository;
     private final CategoryRepository categoryRepository;
+    private final AddressRepository addressRepository;
+    private final RoleRepository roleRepository;
 
     @Override
     public void run(String... args) throws Exception {
@@ -32,8 +37,17 @@ public class DataLoader implements CommandLineRunner {
 
     private void loadData() {
 
-        Category category = Category.builder()
-                .title("Programming")
+        Role userRole = Role.builder()
+            .name(RoleName.ROLE_USER)
+                .build();
+
+        roleRepository.save(userRole);
+
+        Address address = Address.builder()
+                .state("Serbia")
+                .city("Sabac")
+                .zipCode("15 000")
+                .street("Kralja Petra prvog")
                 .build();
 
         User user = User.builder()
@@ -41,7 +55,19 @@ public class DataLoader implements CommandLineRunner {
                 .lastName("Jevtic")
                 .userName("jevta")
                 .email("jevtic.nenad.jevta@gmail.com")
+                .roles(Collections.singletonList(userRole))
+                .address(address)
                 .build();
+
+        userRepository.save(user);
+        address.setUser(user);
+        addressRepository.save(address);
+
+        Category category = Category.builder()
+                .title("Programming")
+                .build();
+
+        categoryRepository.save(category);
 
         Book book = Book.builder()
                 .isbn(generateISBN())
@@ -50,13 +76,10 @@ public class DataLoader implements CommandLineRunner {
                 .pages(221)
                 .author("Nenad")
                 .cover(Cover.SOFT_COVER)
-                .user(user)
                 .category(category)
+                .user(user)
                 .build();
 
-
-        userRepository.save(user);
-        categoryRepository.save(category);
         bookRepository.save(book);
 
     }

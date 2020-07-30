@@ -1,17 +1,17 @@
 package com.restapi.bookstore.model.user;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 
 import javax.persistence.*;
 
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 @Entity
+@Table(name = "address")
 public class Address {
 
     @Id
@@ -31,5 +31,6 @@ public class Address {
     private String street;
 
     @OneToOne(mappedBy = "address")
+    @JsonIgnore
     private User user;
 }

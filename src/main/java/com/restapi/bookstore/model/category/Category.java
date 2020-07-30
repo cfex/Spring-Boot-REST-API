@@ -5,7 +5,7 @@ import com.restapi.bookstore.model.book.Book;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.Set;
+import java.util.List;
 
 @Getter
 @Setter
@@ -13,6 +13,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Builder
 @Entity
+@Table(name = "categories")
 public class Category {
 
     @Id
@@ -26,7 +27,7 @@ public class Category {
             cascade = CascadeType.ALL,
             orphanRemoval = true)
     @JsonIgnore
-    private Set<Book> books;
+    private List<Book> books;
 
     @Override
     public String toString() {
