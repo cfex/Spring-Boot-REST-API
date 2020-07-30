@@ -36,6 +36,10 @@ public class User extends Audit<String> {
     @Column(nullable = false, unique = true, name = "email")
     private String email;
 
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "address_id")
+    private Address address;
+
     @OneToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "user_books",
             joinColumns = @JoinColumn(name = "user_id"),
@@ -65,4 +69,5 @@ public class User extends Audit<String> {
             this.roles = Collections.unmodifiableList(roles);
         }
     }
+
 }
