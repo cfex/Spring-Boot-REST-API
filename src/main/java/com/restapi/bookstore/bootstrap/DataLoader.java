@@ -9,11 +9,12 @@ import com.restapi.bookstore.repository.CategoryRepository;
 import com.restapi.bookstore.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
 
-
+@Profile({"default", "test"})
 @Component
 @AllArgsConstructor
 public class DataLoader implements CommandLineRunner {
