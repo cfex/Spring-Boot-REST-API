@@ -5,6 +5,8 @@ import com.restapi.bookstore.model.book.Book;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Getter
@@ -28,6 +30,18 @@ public class Category {
             orphanRemoval = true)
     @JsonIgnore
     private List<Book> books;
+
+    public List<Book> getBooks() {
+        return this.books == null ? null : new ArrayList<>(this.books);
+    }
+
+    public void setBooks(List<Book> books) {
+        if(books == null) {
+            this.books = null;
+        }else {
+            this.books = Collections.unmodifiableList(books);
+        }
+    }
 
     @Override
     public String toString() {

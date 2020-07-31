@@ -112,10 +112,10 @@ public class BookServiceImpl implements BookService {
 
         Category category = categoryRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("No category found"));
-
+        System.out.println(category.getTitle());
         Pageable pageable = PageRequest.of(page, size, Sort.Direction.DESC, ApplicationConstants.CREATED_BY);
 
-        Page<Book> books = bookRepository.findByCategory(category.getId(), pageable);
+        Page<Book> books = bookRepository.findByCategory_Id(category.getId(), pageable);
 
         List<Book> content = books.getNumberOfElements() == 0 ? Collections.emptyList() : books.getContent();
 
