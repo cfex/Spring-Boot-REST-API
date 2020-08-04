@@ -1,5 +1,6 @@
 package com.restapi.bookstore.model.book;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.restapi.bookstore.config.Audit;
 import com.restapi.bookstore.model.category.Category;
 import com.restapi.bookstore.model.user.User;
@@ -13,7 +14,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Book extends Audit<String> {
+public class Book extends Audit {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,6 +41,7 @@ public class Book extends Audit<String> {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
+    @JsonIgnore
     private User user;
 
     @ManyToOne(fetch = FetchType.EAGER)

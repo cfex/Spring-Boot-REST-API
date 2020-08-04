@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
@@ -22,12 +23,15 @@ public class WebAppConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable()
+        http.cors().and().csrf().disable()
+                .sessionManagement()
+                    .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                    .and()
                 .authorizeRequests()
-                .antMatchers("/books/**", "/users/listAll", "/h2/**").permitAll()
-                .antMatchers("/users/profile").authenticated()
-                .antMatchers("/users/admin/**").hasRole("ADMIN")
-                .antMatchers("/books/save", "/books/deleteById", "/books/updateById").authenticated()
+                    .antMatchers("/books/**", "/users/listAll").permitAll()
+                    .antMatchers("/users/admin/**").hasRole("ADMIN")
+                .anyRequest()
+                .authenticated()
                 .and()
                 .httpBasic();
         http.headers().frameOptions().disable();

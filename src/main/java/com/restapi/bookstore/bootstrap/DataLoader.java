@@ -14,6 +14,7 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import java.util.Arrays;
 import java.util.Collections;
 
 import static com.restapi.bookstore.utils.ApplicationUtilities.generateISBN;
@@ -39,11 +40,15 @@ public class DataLoader implements CommandLineRunner {
 
     private void loadData() {
 
-        Role userRole = Role.builder()
-            .name(RoleName.ROLE_USER)
+        Role adminRole = Role.builder()
+            .name(RoleName.ROLE_ADMIN)
                 .build();
 
-        roleRepository.save(userRole);
+        Role userRole = Role.builder()
+                .name(RoleName.ROLE_USER)
+                .build();
+
+        roleRepository.saveAll(Arrays.asList(adminRole, userRole));
 
         Address address = Address.builder()
                 .state("Serbia")
@@ -52,7 +57,7 @@ public class DataLoader implements CommandLineRunner {
                 .street("Kralja Petra prvog")
                 .build();
 
-        Role role = roleRepository.findByName(RoleName.ROLE_USER).orElseThrow( () -> new RuntimeException("err"));
+        Role role = roleRepository.findByName(RoleName.ROLE_ADMIN).orElseThrow( () -> new RuntimeException("No Role found"));
 
         User user = User.builder()
                 .firstName("Nenad")
@@ -65,7 +70,7 @@ public class DataLoader implements CommandLineRunner {
                 .build();
 
         userRepository.save(user);
-        address.setUser(user);
+
         addressRepository.save(address);
 
         Category category = Category.builder()

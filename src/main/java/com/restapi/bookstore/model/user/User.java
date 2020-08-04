@@ -18,7 +18,7 @@ import java.util.List;
 @Getter
 @Setter
 @Table(name = "user")
-public class User extends Audit<String> {
+public class User extends Audit {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -45,11 +45,7 @@ public class User extends Audit<String> {
     @JoinColumn(name = "address_id")
     private Address address;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "user_books",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "book_id")
-    )
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
     private List<Book> books;
 
@@ -60,7 +56,7 @@ public class User extends Audit<String> {
     private List<Role> roles;
 
     public List<Role> getRoles() {
-        if(roles == null) {
+        if (roles == null) {
             return null;
         }
 
@@ -68,7 +64,7 @@ public class User extends Audit<String> {
     }
 
     public void setRoles(List<Role> roles) {
-        if(roles == null) {
+        if (roles == null) {
             this.roles = null;
         } else {
             this.roles = Collections.unmodifiableList(roles);
