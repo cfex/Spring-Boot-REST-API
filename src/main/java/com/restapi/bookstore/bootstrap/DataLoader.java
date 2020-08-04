@@ -11,6 +11,7 @@ import com.restapi.bookstore.repository.*;
 import lombok.AllArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Profile;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.util.Collections;
@@ -29,6 +30,7 @@ public class DataLoader implements CommandLineRunner {
     private final CategoryRepository categoryRepository;
     private final AddressRepository addressRepository;
     private final RoleRepository roleRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     public void run(String... args) throws Exception {
@@ -50,12 +52,15 @@ public class DataLoader implements CommandLineRunner {
                 .street("Kralja Petra prvog")
                 .build();
 
+        Role role = roleRepository.findByName(RoleName.ROLE_USER).orElseThrow( () -> new RuntimeException("err"));
+
         User user = User.builder()
                 .firstName("Nenad")
                 .lastName("Jevtic")
                 .userName("jevta")
                 .email("jevtic.nenad.jevta@gmail.com")
-                .roles(Collections.singletonList(userRole))
+                .password(passwordEncoder.encode("jevta123"))
+                .roles(Collections.singletonList(role))
                 .address(address)
                 .build();
 
