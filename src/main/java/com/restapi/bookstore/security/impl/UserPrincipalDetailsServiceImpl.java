@@ -30,6 +30,7 @@ public class UserPrincipalDetailsServiceImpl implements UserDetailsService, User
                 .orElseThrow(() -> new RuntimeException("No user found!"));
 
         return UserPrincipal.builder()
+                .id(user.getId())
                 .firstName(user.getFirstName())
                 .lastName(user.getLastName())
                 .email(user.getEmail())

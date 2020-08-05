@@ -15,7 +15,7 @@ import java.util.Collection;
 @Getter
 @Builder
 public class UserPrincipal implements UserDetails {
-
+    private Long id;
     private String firstName;
     private String lastName;
     private String username;

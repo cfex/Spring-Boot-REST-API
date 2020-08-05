@@ -2,13 +2,18 @@ package com.restapi.bookstore.controller;
 
 import com.restapi.bookstore.model.book.Book;
 import com.restapi.bookstore.payload.request.BookPostRequest;
+import com.restapi.bookstore.payload.response.BookPostResponse;
 import com.restapi.bookstore.payload.response.PageableResponse;
+import com.restapi.bookstore.security.CurrentlyLogged;
+import com.restapi.bookstore.security.UserPrincipal;
 import com.restapi.bookstore.service.BookService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 import static com.restapi.bookstore.utils.RequestConstants.DEFAULT_PAGE_NUMBER;
 import static com.restapi.bookstore.utils.RequestConstants.DEFAULT_PAGE_SIZE;
@@ -32,8 +37,11 @@ public class BookController {
     }
 
     @PostMapping("/save")
-    public ResponseEntity<Book> saveBook(@Validated @RequestBody BookPostRequest requestBook) {
-        return null;
+    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
+    public ResponseEntity<BookPostResponse> saveBook(@Valid @RequestBody BookPostRequest requestBook, @CurrentlyLogged UserPrincipal currentUser) {
+        BookPostResponse books = bookService.save(requestBook, currentUser);
+
+        return new ResponseEntity<>(books, HttpStatus.OK);
     }
 
 

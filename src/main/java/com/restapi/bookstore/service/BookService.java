@@ -4,7 +4,9 @@ import com.restapi.bookstore.model.book.Book;
 import com.restapi.bookstore.payload.request.BookPostRequest;
 import com.restapi.bookstore.payload.response.BookPostResponse;
 import com.restapi.bookstore.payload.response.PageableResponse;
-import com.sun.security.auth.UserPrincipal;
+import com.restapi.bookstore.security.UserPrincipal;
+
+;
 
 
 public interface BookService {

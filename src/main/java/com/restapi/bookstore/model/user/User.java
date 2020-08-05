@@ -34,8 +34,7 @@ public class User extends Audit {
     @Column(name = "user_name", unique = true, nullable = false)
     private String userName;
 
-    @NaturalId
-    @Column(nullable = false, unique = true, name = "email")
+    @Column(name = "email", unique = true, nullable = false)
     private String email;
 
     @Column(name = "password", nullable = false)

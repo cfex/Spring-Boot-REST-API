@@ -11,7 +11,6 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @AllArgsConstructor
@@ -22,7 +21,7 @@ public class UserController {
     private UserService userService;
 
     @GetMapping("/me")
-    @PreAuthorize("hasRole('USER')")
+    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     public ResponseEntity<LoggedUserResponse> myProfile(@CurrentlyLogged UserPrincipal user){
         LoggedUserResponse loggedUser = userService.getCurrentUser(user);
 
@@ -51,17 +50,9 @@ public class UserController {
         return new ResponseEntity<>(userProfile, HttpStatus.FOUND);
     }
 
-    @PostMapping
-    @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<User> createUser(@Validated @RequestBody User requestUser) {
-        User user = userService.createUser(requestUser);
-
-        return new ResponseEntity<>(user, HttpStatus.CREATED);
-    }
-
     @PutMapping("/update/{username}")
     @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
-    public ResponseEntity<User> updateUser(@Validated @RequestBody User requestUser,
+    public ResponseEntity<User> updateUser(@RequestBody User requestUser,
                                            @PathVariable(value = "username") String username, @CurrentlyLogged UserPrincipal currentUser) {
 
         User updatedUser = userService.updateUser(requestUser, username, currentUser);
