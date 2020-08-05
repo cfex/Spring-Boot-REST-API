@@ -3,10 +3,7 @@ package com.restapi.bookstore.service.impl;
 import com.restapi.bookstore.model.role.Role;
 import com.restapi.bookstore.model.role.RoleName;
 import com.restapi.bookstore.model.user.User;
-import com.restapi.bookstore.payload.response.CredentialsAvailability;
-import com.restapi.bookstore.payload.response.LoggedUserResponse;
-import com.restapi.bookstore.payload.response.PageableResponse;
-import com.restapi.bookstore.payload.response.UserProfileResponse;
+import com.restapi.bookstore.payload.response.*;
 import com.restapi.bookstore.repository.RoleRepository;
 import com.restapi.bookstore.repository.UserRepository;
 import com.restapi.bookstore.security.UserPrincipal;
@@ -17,7 +14,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +22,7 @@ import java.util.Collections;
 import java.util.List;
 
 import static com.restapi.bookstore.utils.ApplicationConstants.CREATED_AT;
+import static com.restapi.bookstore.utils.ApplicationUtilities.isUserAdmin;
 
 @AllArgsConstructor
 @Service
@@ -51,13 +48,13 @@ public class UserServiceImpl  implements UserService{
     }
 
     @Override
-    public LoggedUserResponse getCurrentUser(UserPrincipal userPrincipal) {
+    public LoggedUserResponse getCurrentUser(UserPrincipal currentUser) {
 
         return LoggedUserResponse.builder()
-                .id(userPrincipal.getId())
-                .firstName(userPrincipal.getFirstName())
-                .lastName(userPrincipal.getLastName())
-                .email(userPrincipal.getEmail())
+                .id(currentUser.getId())
+                .firstName(currentUser.getFirstName())
+                .lastName(currentUser.getLastName())
+                .email(currentUser.getEmail())
                 .build();
     }
 
@@ -111,12 +108,12 @@ public class UserServiceImpl  implements UserService{
     }
 
     @Override
-    public User updateUser(User requestUser, String username, UserPrincipal currentUserPrincipal) {
+    public User updateUser(User requestUser, String username, UserPrincipal currentUser) {
         User user = userRepository.findByUserName(username).orElseThrow(
                 () -> new RuntimeException("User with : " + username + " not found"));
 
-        if(user.getUserName().equals(currentUserPrincipal.getUsername())
-                || currentUserPrincipal.getAuthorities().contains(new SimpleGrantedAuthority(RoleName.ROLE_ADMIN.toString()))){
+        if(user.getUserName().equals(currentUser.getUsername())
+                || isUserAdmin(currentUser)){
 
                 user.setFirstName(requestUser.getFirstName());
                 user.setLastName(requestUser.getLastName());
@@ -129,5 +126,19 @@ public class UserServiceImpl  implements UserService{
         }
 
         throw new RuntimeException("asdas");
+    }
+
+    @Override
+    public HttpResponse deleteUser(Long id, UserPrincipal currentUser) {
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("No user found"));
+
+        if(isUserAdmin(currentUser)){
+            userRepository.delete(user);
+            return new HttpResponse(Boolean.TRUE, "You successfully removed USER: " + user.getUserName());
+        }
+
+        HttpResponse response = new HttpResponse(Boolean.FALSE, "You don't have permission to delete users!");
+        throw new RuntimeException(response.getMessage());
     }
 }

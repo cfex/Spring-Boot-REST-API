@@ -1,6 +1,7 @@
 package com.restapi.bookstore.model.category;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.restapi.bookstore.config.Audit;
 import com.restapi.bookstore.model.book.Book;
 import lombok.*;
 
@@ -16,7 +17,7 @@ import java.util.List;
 @Builder
 @Entity
 @Table(name = "categories")
-public class Category {
+public class Category extends Audit {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

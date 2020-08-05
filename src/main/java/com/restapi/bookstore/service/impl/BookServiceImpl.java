@@ -5,6 +5,7 @@ import com.restapi.bookstore.model.category.Category;
 import com.restapi.bookstore.model.user.User;
 import com.restapi.bookstore.payload.request.BookPostRequest;
 import com.restapi.bookstore.payload.response.BookPostResponse;
+import com.restapi.bookstore.payload.response.HttpResponse;
 import com.restapi.bookstore.payload.response.PageableResponse;
 import com.restapi.bookstore.repository.BookRepository;
 import com.restapi.bookstore.repository.CategoryRepository;
@@ -25,6 +26,7 @@ import java.util.Collections;
 import java.util.List;
 
 import static com.restapi.bookstore.utils.ApplicationUtilities.generateISBN;
+import static com.restapi.bookstore.utils.ApplicationUtilities.isUserAdmin;
 
 @Slf4j
 @AllArgsConstructor
@@ -36,11 +38,40 @@ public class BookServiceImpl implements BookService {
     private final UserRepository userRepository;
 
     @Override
+    public PageableResponse<Book> findAll(int page, int size) {
+        ApplicationUtilities.validateRequestPageAndSize(page, size);
+        Pageable pageable = PageRequest.of(page, size, Sort.Direction.DESC, ApplicationConstants.CREATED_AT);
+
+        Page<Book> books = bookRepository.findAll(pageable);
+        List<Book> content = books.getNumberOfElements() == 0 ? Collections.emptyList() : books.getContent();
+
+        return new PageableResponse<>(content,
+                books.getNumber(),
+                books.getSize(),
+                books.getTotalElements(),
+                books.getTotalPages());
+    }
+
+    @Override
+    public PageableResponse<Book> findAllByISBN(String isbn, int page, int size) {
+        ApplicationUtilities.validateRequestPageAndSize(page, size);
+        Pageable pageable = PageRequest.of(page, size, Sort.Direction.DESC, ApplicationConstants.CREATED_AT);
+
+        Page<Book> books = bookRepository.findAllByIsbnContainingIgnoreCase(isbn, pageable);
+        List<Book> content = books.getNumberOfElements() == 0 ? Collections.emptyList() : books.getContent();
+
+        return new PageableResponse<>(content,
+                books.getNumber(),
+                books.getSize(),
+                books.getTotalElements(),
+                books.getTotalPages());
+    }
+
+    @Override
     public BookPostResponse save(BookPostRequest bookRequest, UserPrincipal currentUser) {
-        //TODO Implement Spring Security
+
         Category category = categoryRepository.findById(bookRequest.getCategoryId())
                 .orElseThrow(() -> new RuntimeException("No category found!"));
-        System.out.println(currentUser.getFirstName());
 
         User user = userRepository.findById(currentUser.getId())
                 .orElseThrow(() -> new RuntimeException("Invalid User"));
@@ -69,17 +100,47 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public PageableResponse<Book> findAll(int page, int size) {
-        ApplicationUtilities.validateRequestPageAndSize(page, size);
-        Pageable pageable = PageRequest.of(page, size, Sort.Direction.DESC, ApplicationConstants.CREATED_AT);
-        Page<Book> books = bookRepository.findAll(pageable);
-        List<Book> content = books.getNumberOfElements() == 0 ? Collections.emptyList() : books.getContent();
+    public Book updateBook(Long id, BookPostRequest requestBook, UserPrincipal currentUser) {
+        Book book = bookRepository.findById(id)
+                .orElseThrow( () -> new RuntimeException("No book found!"));
 
-        return new PageableResponse<>(content,
-                books.getNumber(),
-                books.getSize(),
-                books.getTotalElements(),
-                books.getTotalPages());
+        Category category = categoryRepository.findById(requestBook.getCategoryId())
+                .orElseThrow( () -> new RuntimeException("No category found!"));
+
+       if(book.getUser().getId().equals(currentUser.getId())
+            || isUserAdmin(currentUser)) {
+
+           book.setIsbn(requestBook.getIsbn());
+           book.setTitle(requestBook.getTitle());
+           book.setDescription(requestBook.getDescription());
+           book.setPages(requestBook.getPages());
+           book.setAuthor(requestBook.getAuthor());
+           book.setCover(requestBook.getCover());
+           book.setCategory(category);
+
+           return bookRepository.save(book);
+       }
+
+       HttpResponse response = new HttpResponse(Boolean.FALSE, "You don't have permission to update book");
+
+       throw new RuntimeException(response.getMessage());
+    }
+
+    @Override
+    public HttpResponse removeBook(Long id, UserPrincipal currentUser) {
+
+        Book book = bookRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("No book found!"));
+
+        if(book.getUser().getId().equals(currentUser.getId()) || isUserAdmin(currentUser)) {
+
+            bookRepository.delete(book);
+            return new HttpResponse(Boolean.TRUE, "You successfully deleted book!");
+        }
+
+        HttpResponse response = new HttpResponse(Boolean.FALSE, "You don't have permission to update book");
+
+        throw new RuntimeException(response.getMessage());
     }
 
     @Override

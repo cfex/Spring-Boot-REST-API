@@ -1,6 +1,7 @@
 package com.restapi.bookstore.model.book;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.restapi.bookstore.config.Audit;
 import com.restapi.bookstore.model.category.Category;
 import com.restapi.bookstore.model.user.User;
@@ -14,6 +15,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@JsonIgnoreProperties({"createdAt", "updatedAt"})
 public class Book extends Audit {
 
     @Id

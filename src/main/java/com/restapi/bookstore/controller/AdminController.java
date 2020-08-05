@@ -1,7 +1,11 @@
 package com.restapi.bookstore.controller;
 
 import com.restapi.bookstore.model.user.User;
+import com.restapi.bookstore.payload.response.HttpResponse;
 import com.restapi.bookstore.payload.response.PageableResponse;
+import com.restapi.bookstore.security.CurrentlyLogged;
+import com.restapi.bookstore.security.UserPrincipal;
+import com.restapi.bookstore.service.CategoryService;
 import com.restapi.bookstore.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -21,6 +25,7 @@ import static com.restapi.bookstore.utils.RequestConstants.DEFAULT_PAGE_SIZE;
 public class AdminController {
 
     private final UserService userService;
+    private final CategoryService categoryService;
 
     @GetMapping("/listAllUsers")
     public ResponseEntity<PageableResponse<User>> listAllUsers(@RequestParam(value = "page", required = false,
@@ -38,6 +43,15 @@ public class AdminController {
 
         return new ResponseEntity<>(user, HttpStatus.CREATED);
     }
+
+    @DeleteMapping("/deleteUser/{id}")
+    public ResponseEntity<HttpResponse> deleteUser(@PathVariable("id") Long id,
+                                                   @CurrentlyLogged UserPrincipal currentUser) {
+        HttpResponse response = userService.deleteUser(id, currentUser);
+
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
 }
 
 
