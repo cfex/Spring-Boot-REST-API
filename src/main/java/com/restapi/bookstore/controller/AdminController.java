@@ -19,7 +19,7 @@ import static com.restapi.bookstore.utils.RequestConstants.DEFAULT_PAGE_SIZE;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping("/admin")
+@RequestMapping("/api/admin")
 @PreAuthorize("hasRole('ADMIN')")
 public class AdminController {
 

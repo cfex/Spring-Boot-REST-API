@@ -21,7 +21,7 @@ import static com.restapi.bookstore.utils.RequestConstants.DEFAULT_PAGE_SIZE;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping(path = "/books")
+@RequestMapping(path = "/api/books")
 public class BookController {
 
     private final BookService bookService;
