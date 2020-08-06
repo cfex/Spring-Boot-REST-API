@@ -12,7 +12,7 @@ import javax.persistence.MappedSuperclass;
         value = {"createdBY", "updatedBy"},
         allowGetters = true
 )
-public abstract class UserDateAudit extends Audit{
+public abstract class UserDateAudit extends Audit {
     private static final long serialVersionUID = 1L;
 
     @CreatedBy

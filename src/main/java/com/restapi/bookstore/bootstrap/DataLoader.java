@@ -39,7 +39,7 @@ public class DataLoader implements CommandLineRunner {
     private void loadData() {
 
         Role adminRole = Role.builder()
-            .name(RoleName.ROLE_ADMIN)
+                .name(RoleName.ROLE_ADMIN)
                 .build();
 
         Role userRole = Role.builder()
@@ -55,7 +55,7 @@ public class DataLoader implements CommandLineRunner {
                 .street("Kralja Petra prvog")
                 .build();
 
-        Role role = roleRepository.findByName(RoleName.ROLE_ADMIN).orElseThrow( () -> new RuntimeException("No Role found"));
+        Role role = roleRepository.findByName(RoleName.ROLE_ADMIN).orElseThrow(() -> new RuntimeException("No Role found"));
 
         User user = User.builder()
                 .firstName("Nenad")

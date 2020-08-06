@@ -25,12 +25,13 @@ public class WebAppConfig extends WebSecurityConfigurerAdapter {
     public void configure(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable()
                 .sessionManagement()
-                    .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                    .and()
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and()
                 .authorizeRequests()
-                    .antMatchers("/books/").permitAll()
-                    .antMatchers("/users/**").hasAnyRole("USER", "ADMIN")
-                    .antMatchers("/admin/**").hasRole("ADMIN")
+                .antMatchers("/books/").permitAll()
+                .antMatchers("/auth/**").permitAll()
+                .antMatchers("/users/**").hasAnyRole("USER", "ADMIN")
+                .antMatchers("/admin/**").hasRole("ADMIN")
                 .anyRequest()
                 .authenticated()
                 .and()
@@ -44,7 +45,7 @@ public class WebAppConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    PasswordEncoder passwordEncoder(){
+    PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 }

@@ -22,31 +22,31 @@ public class UserController {
 
     @GetMapping("/me")
     @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
-    public ResponseEntity<LoggedUserResponse> myProfile(@CurrentlyLogged UserPrincipal user){
-        LoggedUserResponse loggedUser = userService.getCurrentUser(user);
+    public ResponseEntity<LoggedUserResponse> myProfile(@CurrentlyLogged UserPrincipal user) {
 
+        LoggedUserResponse loggedUser = userService.getCurrentUser(user);
         return new ResponseEntity<>(loggedUser, HttpStatus.OK);
     }
 
     @GetMapping("/checkUsernameAvailability")
     public ResponseEntity<CredentialsAvailability> checkUsernameAvailability(@RequestParam(value = "username")
-                                                                                         String username){
-        CredentialsAvailability availability = userService.checkUsernameAvailability(username);
+                                                                                     String username) {
 
+        CredentialsAvailability availability = userService.checkUsernameAvailability(username);
         return new ResponseEntity<>(availability, HttpStatus.OK);
     }
 
     @GetMapping("/checkEmailAvailability")
-    public ResponseEntity<CredentialsAvailability> checkEmailAvailability(@RequestParam(value = "email") String email){
-        CredentialsAvailability availability = userService.checkEmailAvailability(email);
+    public ResponseEntity<CredentialsAvailability> checkEmailAvailability(@RequestParam(value = "email") String email) {
 
+        CredentialsAvailability availability = userService.checkEmailAvailability(email);
         return new ResponseEntity<>(availability, HttpStatus.OK);
     }
 
     @GetMapping("/profile/{username}")
     public ResponseEntity<UserProfileResponse> showUserProfile(@PathVariable("username") String username) {
-        UserProfileResponse userProfile = userService.showUserProfile(username);
 
+        UserProfileResponse userProfile = userService.showUserProfile(username);
         return new ResponseEntity<>(userProfile, HttpStatus.FOUND);
     }
 
@@ -56,7 +56,6 @@ public class UserController {
                                            @PathVariable(value = "username") String username, @CurrentlyLogged UserPrincipal currentUser) {
 
         User updatedUser = userService.updateUser(requestUser, username, currentUser);
-
         return new ResponseEntity<>(updatedUser, HttpStatus.CREATED);
     }
 }

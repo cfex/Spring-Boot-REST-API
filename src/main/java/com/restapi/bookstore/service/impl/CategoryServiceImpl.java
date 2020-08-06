@@ -30,7 +30,7 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public CategoryPostResponse saveCategory(CategoryPostRequest requestCategory, UserPrincipal currentUser) {
-        if(isUserAdmin(currentUser)) {
+        if (isUserAdmin(currentUser)) {
             Category category = Category.builder()
                     .title(requestCategory.getTitle())
                     .build();
@@ -65,7 +65,7 @@ public class CategoryServiceImpl implements CategoryService {
         Category category = categoryRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("No category found"));
 
-        if(isUserAdmin(currentUser)) {
+        if (isUserAdmin(currentUser)) {
             category.setTitle(requestCategory.getTitle());
 
             return categoryRepository.save(category);
@@ -81,7 +81,7 @@ public class CategoryServiceImpl implements CategoryService {
         Category category = categoryRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("No category found"));
 
-        if(isUserAdmin(currentUser)) {
+        if (isUserAdmin(currentUser)) {
             categoryRepository.delete(category);
             return new HttpResponse(Boolean.TRUE, "You successfully removed category: " + category.getTitle());
         }

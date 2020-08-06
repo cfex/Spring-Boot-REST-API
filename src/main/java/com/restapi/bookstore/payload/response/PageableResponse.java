@@ -14,6 +14,7 @@ import java.util.List;
 @Getter
 @Setter
 public class PageableResponse<T> {
+
     private List<T> content;
     private int page;
     private int size;
@@ -21,7 +22,7 @@ public class PageableResponse<T> {
     private int pagesCount;
 
     public List<T> getContent() {
-        if(content == null) {
+        if (content == null) {
             return null;
         }
 
@@ -29,9 +30,9 @@ public class PageableResponse<T> {
     }
 
     public final void setContent(List<T> content) {
-        if(content == null) {
+        if (content == null) {
             this.content = null;
-        }else {
+        } else {
             this.content = Collections.unmodifiableList(content);
         }
     }

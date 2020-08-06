@@ -30,17 +30,17 @@ public class CategoryController {
     public ResponseEntity<PageableResponse<Category>> findAll(
             @RequestParam(value = "page", required = false, defaultValue = DEFAULT_PAGE_NUMBER) int page,
             @RequestParam(value = "size", required = false, defaultValue = DEFAULT_PAGE_SIZE) int size) {
-        PageableResponse<Category> response = categoryService.findAllCategories(page, size);
 
+        PageableResponse<Category> response = categoryService.findAllCategories(page, size);
         return new ResponseEntity<>(response, HttpStatus.FOUND);
     }
 
     @PostMapping
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<CategoryPostResponse> saveCategory(@Valid @RequestBody CategoryPostRequest categoryRequest,
-                                                             @CurrentlyLogged UserPrincipal currentUser){
-        CategoryPostResponse response = categoryService.saveCategory(categoryRequest, currentUser);
+                                                             @CurrentlyLogged UserPrincipal currentUser) {
 
+        CategoryPostResponse response = categoryService.saveCategory(categoryRequest, currentUser);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
@@ -49,8 +49,8 @@ public class CategoryController {
     public ResponseEntity<Category> updateCategory(@PathVariable("id") Long id,
                                                    @Valid @RequestBody CategoryPostRequest requestCategory,
                                                    @CurrentlyLogged UserPrincipal currentUser) {
-        Category category = categoryService.updateCategory(id, requestCategory, currentUser);
 
+        Category category = categoryService.updateCategory(id, requestCategory, currentUser);
         return new ResponseEntity<>(category, HttpStatus.CREATED);
     }
 
@@ -58,8 +58,8 @@ public class CategoryController {
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<HttpResponse> deleteCategory(@PathVariable("id") Long id,
                                                        @CurrentlyLogged UserPrincipal currentUser) {
-        HttpResponse response = categoryService.deleteCategory(id, currentUser);
 
+        HttpResponse response = categoryService.deleteCategory(id, currentUser);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 }

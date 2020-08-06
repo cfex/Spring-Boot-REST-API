@@ -28,47 +28,45 @@ public class BookController {
 
     @GetMapping
     public ResponseEntity<PageableResponse<Book>> findAll(
-            @RequestParam(value = "page", required = false,
-                    defaultValue = DEFAULT_PAGE_NUMBER) int page,
-            @RequestParam(value = "size", required = false,
-                    defaultValue = DEFAULT_PAGE_SIZE) int size) {
-        PageableResponse<Book> books = bookService.findAll(page, size);
+            @RequestParam(value = "page", required = false, defaultValue = DEFAULT_PAGE_NUMBER) int page,
+            @RequestParam(value = "size", required = false, defaultValue = DEFAULT_PAGE_SIZE) int size) {
 
+        PageableResponse<Book> books = bookService.findAll(page, size);
         return new ResponseEntity<>(books, HttpStatus.OK);
     }
 
     @PostMapping("/save")
     @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     public ResponseEntity<BookPostResponse> saveBook(@Valid @RequestBody BookPostRequest requestBook, @CurrentlyLogged UserPrincipal currentUser) {
-        BookPostResponse books = bookService.save(requestBook, currentUser);
 
+        BookPostResponse books = bookService.save(requestBook, currentUser);
         return new ResponseEntity<>(books, HttpStatus.OK);
     }
 
     @PutMapping("/update/{id}")
     @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     public ResponseEntity<Book> updateBook(@PathVariable("id") Long id, @Valid @RequestBody BookPostRequest requestBook, @CurrentlyLogged UserPrincipal currentUser) {
-        Book book = bookService.updateBook(id, requestBook, currentUser);
 
+        Book book = bookService.updateBook(id, requestBook, currentUser);
         return new ResponseEntity<>(book, HttpStatus.CREATED);
     }
 
     @DeleteMapping("/delete/{id}")
     @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     public ResponseEntity<HttpResponse> deleteBook(@PathVariable("id") Long id, @CurrentlyLogged UserPrincipal currentUser) {
-        HttpResponse response = bookService.removeBook(id, currentUser);
 
+        HttpResponse response = bookService.removeBook(id, currentUser);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @GetMapping("/findByISBN/{isbn}")
     public ResponseEntity<PageableResponse<Book>> findByISBN(@PathVariable("isbn") String isbn,
-                                           @RequestParam(value = "page", required = false,
-                                                   defaultValue = DEFAULT_PAGE_NUMBER) int page,
-                                           @RequestParam(value = "size", required = false,
-                                                   defaultValue = DEFAULT_PAGE_SIZE) int size) {
-        PageableResponse<Book> books = bookService.findAllByISBN(isbn, page, size);
+                                                             @RequestParam(value = "page", required = false,
+                                                                     defaultValue = DEFAULT_PAGE_NUMBER) int page,
+                                                             @RequestParam(value = "size", required = false,
+                                                                     defaultValue = DEFAULT_PAGE_SIZE) int size) {
 
+        PageableResponse<Book> books = bookService.findAllByISBN(isbn, page, size);
         return new ResponseEntity<>(books, HttpStatus.FOUND);
     }
 
@@ -78,8 +76,8 @@ public class BookController {
                                                                        defaultValue = DEFAULT_PAGE_NUMBER) int page,
                                                                @RequestParam(value = "size", required = false,
                                                                        defaultValue = DEFAULT_PAGE_SIZE) int size) {
-       PageableResponse<Book> books = bookService.findByAuthor(author, page, size);
 
+        PageableResponse<Book> books = bookService.findByAuthor(author, page, size);
         return new ResponseEntity<>(books, HttpStatus.OK);
     }
 
@@ -89,9 +87,9 @@ public class BookController {
                                                                       defaultValue = DEFAULT_PAGE_NUMBER) int page,
                                                               @RequestParam(value = "size", required = false,
                                                                       defaultValue = DEFAULT_PAGE_SIZE) int size) {
-        PageableResponse<Book> books = bookService.findByTitle(title, page, size);
 
-        return  new ResponseEntity<>(books, HttpStatus.OK);
+        PageableResponse<Book> books = bookService.findByTitle(title, page, size);
+        return new ResponseEntity<>(books, HttpStatus.OK);
     }
 
     @GetMapping("/findByCategory/{id}")
@@ -99,9 +97,9 @@ public class BookController {
                                                                  @RequestParam(value = "page", required = false,
                                                                          defaultValue = DEFAULT_PAGE_NUMBER) int page,
                                                                  @RequestParam(value = "size", required = false,
-                                                                         defaultValue = DEFAULT_PAGE_SIZE) int size){
-        PageableResponse<Book> books = bookService.findByCategory(id, page, size);
+                                                                         defaultValue = DEFAULT_PAGE_SIZE) int size) {
 
+        PageableResponse<Book> books = bookService.findByCategory(id, page, size);
         return new ResponseEntity<>(books, HttpStatus.OK);
     }
 
@@ -110,9 +108,9 @@ public class BookController {
                                                              @RequestParam(value = "page", required = false,
                                                                      defaultValue = DEFAULT_PAGE_NUMBER) int page,
                                                              @RequestParam(value = "size", required = false,
-                                                                     defaultValue = DEFAULT_PAGE_SIZE) int size){
-        PageableResponse<Book> books = bookService.findByDescription(desc, page, size);
+                                                                     defaultValue = DEFAULT_PAGE_SIZE) int size) {
 
+        PageableResponse<Book> books = bookService.findByDescription(desc, page, size);
         return new ResponseEntity<>(books, HttpStatus.OK);
     }
 

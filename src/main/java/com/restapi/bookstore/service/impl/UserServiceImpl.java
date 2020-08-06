@@ -3,6 +3,7 @@ package com.restapi.bookstore.service.impl;
 import com.restapi.bookstore.model.role.Role;
 import com.restapi.bookstore.model.role.RoleName;
 import com.restapi.bookstore.model.user.User;
+import com.restapi.bookstore.payload.request.RegisterUserRequest;
 import com.restapi.bookstore.payload.response.*;
 import com.restapi.bookstore.repository.RoleRepository;
 import com.restapi.bookstore.repository.UserRepository;
@@ -26,7 +27,7 @@ import static com.restapi.bookstore.utils.ApplicationUtilities.isUserAdmin;
 
 @AllArgsConstructor
 @Service
-public class UserServiceImpl  implements UserService{
+public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
@@ -38,7 +39,7 @@ public class UserServiceImpl  implements UserService{
         Sort sort;
         Pageable pageable = PageRequest.of(page, size, Sort.Direction.DESC, CREATED_AT);
         Page<User> users = userRepository.findAll(pageable);
-        List<User> content =  users.getNumberOfElements() == 0 ? Collections.emptyList() : users.getContent();
+        List<User> content = users.getNumberOfElements() == 0 ? Collections.emptyList() : users.getContent();
 
         return new PageableResponse<>(content,
                 users.getNumber(),
@@ -90,17 +91,17 @@ public class UserServiceImpl  implements UserService{
 
     @Override
     public User createUser(User user) {
-        if(userRepository.existsByUserName(user.getUserName())) {
+        if (userRepository.existsByUserName(user.getUserName())) {
             throw new RuntimeException("Username already exists");
         }
 
-        if(userRepository.existsByEmail(user.getEmail())){
+        if (userRepository.existsByEmail(user.getEmail())) {
             throw new RuntimeException("Email already exists");
         }
 
         List<Role> roles = new ArrayList<>();
 
-        roles.add(roleRepository.findByName(RoleName.ROLE_USER).orElseThrow( () -> new RuntimeException("Not Role found!")));
+        roles.add(roleRepository.findByName(RoleName.ROLE_USER).orElseThrow(() -> new RuntimeException("Not Role found!")));
         user.setRoles(roles);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
 
@@ -112,16 +113,16 @@ public class UserServiceImpl  implements UserService{
         User user = userRepository.findByUserName(username).orElseThrow(
                 () -> new RuntimeException("User with : " + username + " not found"));
 
-        if(user.getUserName().equals(currentUser.getUsername())
-                || isUserAdmin(currentUser)){
+        if (user.getUserName().equals(currentUser.getUsername())
+                || isUserAdmin(currentUser)) {
 
-                user.setFirstName(requestUser.getFirstName());
-                user.setLastName(requestUser.getLastName());
-                user.setUserName(requestUser.getUserName());
-                user.setEmail(requestUser.getEmail());
-                user.setPassword(passwordEncoder.encode(requestUser.getPassword()));
+            user.setFirstName(requestUser.getFirstName());
+            user.setLastName(requestUser.getLastName());
+            user.setUserName(requestUser.getUserName());
+            user.setEmail(requestUser.getEmail());
+            user.setPassword(passwordEncoder.encode(requestUser.getPassword()));
 
-                return userRepository.save(user);
+            return userRepository.save(user);
 
         }
 
@@ -129,11 +130,35 @@ public class UserServiceImpl  implements UserService{
     }
 
     @Override
+    public HttpResponse registerUser(RegisterUserRequest requestUser) {
+        if (userRepository.existsByUserName(requestUser.getUsername())
+                || userRepository.existsByEmail(requestUser.getEmail())) {
+            throw new RuntimeException("Credentials already taken!");
+        }
+
+        List<Role> roles = Collections.singletonList(roleRepository.findByName(RoleName.ROLE_USER)
+                .orElseThrow(() -> new RuntimeException("No role found!")));
+
+        User user = User.builder()
+                .firstName(requestUser.getFirstName())
+                .lastName(requestUser.getLastName())
+                .userName(requestUser.getUsername())
+                .email(requestUser.getEmail())
+                .password(passwordEncoder.encode(requestUser.getPassword()))
+                .roles(roles)
+                .build();
+
+        userRepository.save(user);
+
+        return new HttpResponse(Boolean.TRUE, "User registered successfully");
+    }
+
+    @Override
     public HttpResponse deleteUser(Long id, UserPrincipal currentUser) {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("No user found"));
 
-        if(isUserAdmin(currentUser)){
+        if (isUserAdmin(currentUser)) {
             userRepository.delete(user);
             return new HttpResponse(Boolean.TRUE, "You successfully removed USER: " + user.getUserName());
         }

@@ -68,82 +68,6 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public BookPostResponse save(BookPostRequest bookRequest, UserPrincipal currentUser) {
-
-        Category category = categoryRepository.findById(bookRequest.getCategoryId())
-                .orElseThrow(() -> new RuntimeException("No category found!"));
-
-        User user = userRepository.findById(currentUser.getId())
-                .orElseThrow(() -> new RuntimeException("Invalid User"));
-
-        Book book = Book.builder()
-                .isbn(generateISBN())
-                .title(bookRequest.getTitle())
-                .description(bookRequest.getDescription())
-                .pages(bookRequest.getPages())
-                .author(bookRequest.getAuthor())
-                .cover(bookRequest.getCover())
-                .category(category)
-                .user(user)
-                .build();
-
-        Book addedBook = bookRepository.save(book);
-
-        return BookPostResponse.builder()
-                .isbn(addedBook.getIsbn())
-                .title(addedBook.getTitle())
-                .description(addedBook.getDescription())
-                .pages(addedBook.getPages())
-                .author(addedBook.getAuthor())
-                .category(addedBook.getCategory())
-                .build();
-    }
-
-    @Override
-    public Book updateBook(Long id, BookPostRequest requestBook, UserPrincipal currentUser) {
-        Book book = bookRepository.findById(id)
-                .orElseThrow( () -> new RuntimeException("No book found!"));
-
-        Category category = categoryRepository.findById(requestBook.getCategoryId())
-                .orElseThrow( () -> new RuntimeException("No category found!"));
-
-       if(book.getUser().getId().equals(currentUser.getId())
-            || isUserAdmin(currentUser)) {
-
-           book.setIsbn(requestBook.getIsbn());
-           book.setTitle(requestBook.getTitle());
-           book.setDescription(requestBook.getDescription());
-           book.setPages(requestBook.getPages());
-           book.setAuthor(requestBook.getAuthor());
-           book.setCover(requestBook.getCover());
-           book.setCategory(category);
-
-           return bookRepository.save(book);
-       }
-
-       HttpResponse response = new HttpResponse(Boolean.FALSE, "You don't have permission to update book");
-
-       throw new RuntimeException(response.getMessage());
-    }
-
-    @Override
-    public HttpResponse removeBook(Long id, UserPrincipal currentUser) {
-
-        Book book = bookRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("No book found!"));
-
-        if(book.getUser().getId().equals(currentUser.getId()) || isUserAdmin(currentUser)) {
-
-            bookRepository.delete(book);
-            return new HttpResponse(Boolean.TRUE, "You successfully deleted book!");
-        }
-
-        HttpResponse response = new HttpResponse(Boolean.FALSE, "You don't have permission to update book");
-
-        throw new RuntimeException(response.getMessage());
-    }
-
-    @Override
     public PageableResponse<Book> findByTitle(String title, int page, int size) {
         ApplicationUtilities.validateRequestPageAndSize(page, size);
 
@@ -209,6 +133,82 @@ public class BookServiceImpl implements BookService {
                 books.getSize(),
                 books.getTotalElements(),
                 books.getTotalPages());
+    }
+
+    @Override
+    public BookPostResponse save(BookPostRequest bookRequest, UserPrincipal currentUser) {
+
+        Category category = categoryRepository.findById(bookRequest.getCategoryId())
+                .orElseThrow(() -> new RuntimeException("No category found!"));
+
+        User user = userRepository.findById(currentUser.getId())
+                .orElseThrow(() -> new RuntimeException("Invalid User"));
+
+        Book book = Book.builder()
+                .isbn(generateISBN())
+                .title(bookRequest.getTitle())
+                .description(bookRequest.getDescription())
+                .pages(bookRequest.getPages())
+                .author(bookRequest.getAuthor())
+                .cover(bookRequest.getCover())
+                .category(category)
+                .user(user)
+                .build();
+
+        Book addedBook = bookRepository.save(book);
+
+        return BookPostResponse.builder()
+                .isbn(addedBook.getIsbn())
+                .title(addedBook.getTitle())
+                .description(addedBook.getDescription())
+                .pages(addedBook.getPages())
+                .author(addedBook.getAuthor())
+                .category(addedBook.getCategory())
+                .build();
+    }
+
+    @Override
+    public HttpResponse removeBook(Long id, UserPrincipal currentUser) {
+
+        Book book = bookRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("No book found!"));
+
+        if (book.getUser().getId().equals(currentUser.getId()) || isUserAdmin(currentUser)) {
+
+            bookRepository.delete(book);
+            return new HttpResponse(Boolean.TRUE, "You successfully deleted book!");
+        }
+
+        HttpResponse response = new HttpResponse(Boolean.FALSE, "You don't have permission to update book");
+
+        throw new RuntimeException(response.getMessage());
+    }
+
+    @Override
+    public Book updateBook(Long id, BookPostRequest requestBook, UserPrincipal currentUser) {
+        Book book = bookRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("No book found!"));
+
+        Category category = categoryRepository.findById(requestBook.getCategoryId())
+                .orElseThrow(() -> new RuntimeException("No category found!"));
+
+        if (book.getUser().getId().equals(currentUser.getId())
+                || isUserAdmin(currentUser)) {
+
+            book.setIsbn(requestBook.getIsbn());
+            book.setTitle(requestBook.getTitle());
+            book.setDescription(requestBook.getDescription());
+            book.setPages(requestBook.getPages());
+            book.setAuthor(requestBook.getAuthor());
+            book.setCover(requestBook.getCover());
+            book.setCategory(category);
+
+            return bookRepository.save(book);
+        }
+
+        HttpResponse response = new HttpResponse(Boolean.FALSE, "You don't have permission to update book");
+
+        throw new RuntimeException(response.getMessage());
     }
 
 }
