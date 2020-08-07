@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="616df5f0-3690-4ec7-b5f0-7d8af6d0b12a" name="Default Changelist" comment="" />
+    <list default="true" id="616df5f0-3690-4ec7-b5f0-7d8af6d0b12a" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/restapi/bookstore/security/config/WebAppConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/restapi/bookstore/security/config/WebAppConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/restapi/bookstore/controller/AdminController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/restapi/bookstore/controller/AdminController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/restapi/bookstore/controller/AuthController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/restapi/bookstore/controller/AuthController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/restapi/bookstore/controller/BookController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/restapi/bookstore/controller/BookController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/restapi/bookstore/controller/CategoryController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/restapi/bookstore/controller/CategoryController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/restapi/bookstore/security/config/WebAppConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/restapi/bookstore/security/config/WebAppConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/restapi/bookstore/service/impl/BookServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/restapi/bookstore/service/impl/BookServiceImpl.class" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -55,7 +64,7 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="UPDATE_TYPE" value="REBASE" />
+    <option name="UPDATE_TYPE" value="MERGE" />
   </component>
   <component name="MavenImportPreferences">
     <option name="importingSettings">
@@ -83,7 +92,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="extract.method.default.visibility" value="private" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/Spring-Boot-Blog-REST-API-master" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -148,7 +157,8 @@
       <workItem from="1596526881693" duration="12908000" />
       <workItem from="1596628136091" duration="18200000" />
       <workItem from="1596730123783" duration="3872000" />
-      <workItem from="1596737603100" duration="1826000" />
+      <workItem from="1596737603100" duration="3716000" />
+      <workItem from="1596810436109" duration="5563000" />
     </task>
     <task id="LOCAL-00001" summary="Displayed books on index. Closes #3">
       <created>1595338052435</created>
@@ -469,51 +479,51 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="482" height="466" key="DebuggerActiveHint/0.0.1920.1040/-1280.0.1280.1024@0.0.1920.1040" timestamp="1596039137789" />
-    <state x="184" y="85" width="1536" height="861" key="DiffContextDialog" timestamp="1596739096330">
+    <state x="184" y="85" width="1536" height="861" key="DiffContextDialog" timestamp="1596741747854">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="184" y="85" width="1536" height="861" key="DiffContextDialog/0.0.1920.1040/-1280.0.1280.1024@0.0.1920.1040" timestamp="1596739096330" />
-    <state x="740" y="274" key="FileChooserDialogImpl" timestamp="1596633085362">
+    <state x="184" y="85" width="1536" height="861" key="DiffContextDialog/0.0.1920.1040/-1280.0.1280.1024@0.0.1920.1040" timestamp="1596741747854" />
+    <state x="740" y="274" key="FileChooserDialogImpl" timestamp="1596814747939">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="-787" y="270" key="FileChooserDialogImpl/0.0.1920.1040/-1280.0.1280.1024@-1280.0.1280.1024" timestamp="1595090406702" />
-    <state x="740" y="274" key="FileChooserDialogImpl/0.0.1920.1040/-1280.0.1280.1024@0.0.1920.1040" timestamp="1596633085362" />
+    <state x="740" y="274" key="FileChooserDialogImpl/0.0.1920.1040/-1280.0.1280.1024@0.0.1920.1040" timestamp="1596814747939" />
     <state x="830" y="413" width="562" height="214" key="Github.ShareDialog" timestamp="1595315648740">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="830" y="413" width="562" height="214" key="Github.ShareDialog/0.0.1920.1040/-1280.0.1280.1024@0.0.1920.1040" timestamp="1595315648740" />
-    <state width="1877" height="258" key="GridCell.Tab.0.bottom" timestamp="1596734469099">
+    <state width="1742" height="242" key="GridCell.Tab.0.bottom" timestamp="1596816430985">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="258" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1280.0.1280.1024@0.0.1920.1040" timestamp="1596734469099" />
-    <state width="1877" height="258" key="GridCell.Tab.0.center" timestamp="1596734469098">
+    <state width="1742" height="242" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1280.0.1280.1024@0.0.1920.1040" timestamp="1596816430985" />
+    <state width="1742" height="242" key="GridCell.Tab.0.center" timestamp="1596816430984">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="258" key="GridCell.Tab.0.center/0.0.1920.1040/-1280.0.1280.1024@0.0.1920.1040" timestamp="1596734469098" />
-    <state width="1877" height="258" key="GridCell.Tab.0.left" timestamp="1596734469098">
+    <state width="1742" height="242" key="GridCell.Tab.0.center/0.0.1920.1040/-1280.0.1280.1024@0.0.1920.1040" timestamp="1596816430984" />
+    <state width="1742" height="242" key="GridCell.Tab.0.left" timestamp="1596816430984">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="258" key="GridCell.Tab.0.left/0.0.1920.1040/-1280.0.1280.1024@0.0.1920.1040" timestamp="1596734469098" />
-    <state width="1877" height="258" key="GridCell.Tab.0.right" timestamp="1596734469099">
+    <state width="1742" height="242" key="GridCell.Tab.0.left/0.0.1920.1040/-1280.0.1280.1024@0.0.1920.1040" timestamp="1596816430984" />
+    <state width="1742" height="242" key="GridCell.Tab.0.right" timestamp="1596816430985">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="258" key="GridCell.Tab.0.right/0.0.1920.1040/-1280.0.1280.1024@0.0.1920.1040" timestamp="1596734469099" />
-    <state width="1877" height="258" key="GridCell.Tab.1.bottom" timestamp="1596734469099">
+    <state width="1742" height="242" key="GridCell.Tab.0.right/0.0.1920.1040/-1280.0.1280.1024@0.0.1920.1040" timestamp="1596816430985" />
+    <state width="1742" height="242" key="GridCell.Tab.1.bottom" timestamp="1596816430985">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="258" key="GridCell.Tab.1.bottom/0.0.1920.1040/-1280.0.1280.1024@0.0.1920.1040" timestamp="1596734469099" />
-    <state width="1877" height="258" key="GridCell.Tab.1.center" timestamp="1596734469099">
+    <state width="1742" height="242" key="GridCell.Tab.1.bottom/0.0.1920.1040/-1280.0.1280.1024@0.0.1920.1040" timestamp="1596816430985" />
+    <state width="1742" height="242" key="GridCell.Tab.1.center" timestamp="1596816430985">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="258" key="GridCell.Tab.1.center/0.0.1920.1040/-1280.0.1280.1024@0.0.1920.1040" timestamp="1596734469099" />
-    <state width="1877" height="258" key="GridCell.Tab.1.left" timestamp="1596734469099">
+    <state width="1742" height="242" key="GridCell.Tab.1.center/0.0.1920.1040/-1280.0.1280.1024@0.0.1920.1040" timestamp="1596816430985" />
+    <state width="1742" height="242" key="GridCell.Tab.1.left" timestamp="1596816430985">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="258" key="GridCell.Tab.1.left/0.0.1920.1040/-1280.0.1280.1024@0.0.1920.1040" timestamp="1596734469099" />
-    <state width="1877" height="258" key="GridCell.Tab.1.right" timestamp="1596734469099">
+    <state width="1742" height="242" key="GridCell.Tab.1.left/0.0.1920.1040/-1280.0.1280.1024@0.0.1920.1040" timestamp="1596816430985" />
+    <state width="1742" height="242" key="GridCell.Tab.1.right" timestamp="1596816430985">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="258" key="GridCell.Tab.1.right/0.0.1920.1040/-1280.0.1280.1024@0.0.1920.1040" timestamp="1596734469099" />
+    <state width="1742" height="242" key="GridCell.Tab.1.right/0.0.1920.1040/-1280.0.1280.1024@0.0.1920.1040" timestamp="1596816430985" />
     <state width="1877" height="256" key="GridCell.Tab.2.bottom" timestamp="1596655114413">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -563,10 +573,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="818" y="257" key="com.intellij.database.view.ui.DbObjectDialog/0.0.1920.1040/-1280.0.1280.1024@0.0.1920.1040" timestamp="1596096466064" />
-    <state x="769" y="436" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1596739330511">
+    <state x="769" y="436" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1596741728440">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="769" y="436" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040/-1280.0.1280.1024@0.0.1920.1040" timestamp="1596739330511" />
+    <state x="769" y="436" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040/-1280.0.1280.1024@0.0.1920.1040" timestamp="1596741728440" />
     <state x="521" y="255" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1596523370855">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
