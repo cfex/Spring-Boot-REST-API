@@ -1,5 +1,7 @@
 package com.restapi.bookstore.service.impl;
 
+import com.restapi.bookstore.exceptions.ResourceNotFoundException;
+import com.restapi.bookstore.exceptions.UnauthorizedRequestException;
 import com.restapi.bookstore.model.book.Book;
 import com.restapi.bookstore.model.category.Category;
 import com.restapi.bookstore.model.user.User;
@@ -100,11 +102,12 @@ public class BookServiceImpl implements BookService {
 
 
     @Override
-    public PageableResponse<Book> findByCategory(Long id, int page, int size) {
+    public PageableResponse<Book> findByCategory(Long id, int page, int size)  {
         ApplicationUtilities.validateRequestPageAndSize(page, size);
 
         Category category = categoryRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("No category found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Category not found"));
+
         System.out.println(category.getTitle());
         Pageable pageable = PageRequest.of(page, size, Sort.Direction.DESC, ApplicationConstants.CREATED_AT);
 
@@ -139,10 +142,11 @@ public class BookServiceImpl implements BookService {
     public BookPostResponse save(BookPostRequest bookRequest, UserPrincipal currentUser) {
 
         Category category = categoryRepository.findById(bookRequest.getCategoryId())
-                .orElseThrow(() -> new RuntimeException("No category found!"));
+                .orElseThrow(() -> new ResourceNotFoundException(
+                        "Category with id " + bookRequest.getCategoryId() + " not found"));
 
         User user = userRepository.findById(currentUser.getId())
-                .orElseThrow(() -> new RuntimeException("Invalid User"));
+                .orElseThrow(() -> new UnauthorizedRequestException("Unauthorized Request. Please sign up or log in"));
 
         Book book = Book.builder()
                 .isbn(generateISBN())
@@ -171,7 +175,8 @@ public class BookServiceImpl implements BookService {
     public HttpResponse removeBook(Long id, UserPrincipal currentUser) {
 
         Book book = bookRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("No book found!"));
+                .orElseThrow(() -> new ResourceNotFoundException(
+                        "Book with id " + id + " not found"));
 
         if (book.getUser().getId().equals(currentUser.getId()) || isUserAdmin(currentUser)) {
 
@@ -187,10 +192,12 @@ public class BookServiceImpl implements BookService {
     @Override
     public Book updateBook(Long id, BookPostRequest requestBook, UserPrincipal currentUser) {
         Book book = bookRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("No book found!"));
+                .orElseThrow(() -> new ResourceNotFoundException(
+                        "Book with id " + id + " not found"));
 
         Category category = categoryRepository.findById(requestBook.getCategoryId())
-                .orElseThrow(() -> new RuntimeException("No category found!"));
+                .orElseThrow(() -> new ResourceNotFoundException(
+                        "Category with id " + requestBook.getCategoryId() + " not found"));
 
         if (book.getUser().getId().equals(currentUser.getId())
                 || isUserAdmin(currentUser)) {

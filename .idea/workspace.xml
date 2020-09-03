@@ -3,13 +3,22 @@
   <component name="ChangeListManager">
     <list default="true" id="616df5f0-3690-4ec7-b5f0-7d8af6d0b12a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/restapi/bookstore/security/config/WebAppConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/restapi/bookstore/security/config/WebAppConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/restapi/bookstore/controller/AdminController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/restapi/bookstore/controller/AdminController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/restapi/bookstore/controller/AuthController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/restapi/bookstore/controller/AuthController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvnw" beforeDir="false" afterPath="$PROJECT_DIR$/mvnw" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/restapi/bookstore/model/category/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/restapi/bookstore/model/category/Category.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/restapi/bookstore/service/impl/BookServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/restapi/bookstore/service/impl/BookServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/restapi/bookstore/config/UserDateAudit.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/restapi/bookstore/config/UserDateAudit.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/restapi/bookstore/controller/BookController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/restapi/bookstore/controller/BookController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/restapi/bookstore/controller/CategoryController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/restapi/bookstore/controller/CategoryController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/restapi/bookstore/security/config/WebAppConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/restapi/bookstore/security/config/WebAppConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/restapi/bookstore/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/restapi/bookstore/controller/UserController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/restapi/bookstore/payload/request/BookPostRequest$BookPostRequestBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/restapi/bookstore/payload/request/BookPostRequest$BookPostRequestBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/restapi/bookstore/payload/request/BookPostRequest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/restapi/bookstore/payload/request/BookPostRequest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/restapi/bookstore/payload/request/CategoryPostRequest$CategoryPostRequestBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/restapi/bookstore/payload/request/CategoryPostRequest$CategoryPostRequestBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/restapi/bookstore/payload/request/CategoryPostRequest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/restapi/bookstore/payload/request/CategoryPostRequest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/restapi/bookstore/payload/response/LoggedUserResponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/restapi/bookstore/payload/response/LoggedUserResponse.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/restapi/bookstore/payload/response/PageableResponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/restapi/bookstore/payload/response/PageableResponse.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/restapi/bookstore/payload/response/UserProfileResponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/restapi/bookstore/payload/response/UserProfileResponse.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/restapi/bookstore/service/BookService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/restapi/bookstore/service/BookService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/restapi/bookstore/service/impl/BookServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/restapi/bookstore/service/impl/BookServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-com.restapi.bookstore.BookStoreApplicationTests.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-com.restapi.bookstore.BookStoreApplicationTests.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -104,8 +113,8 @@
   </component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
-      <recent name="com.restapi.bookstore.payload" />
       <recent name="com.restapi.bookstore.exceptions" />
+      <recent name="com.restapi.bookstore.payload" />
       <recent name="com.restapi.bookstore.model" />
     </key>
   </component>
@@ -158,7 +167,18 @@
       <workItem from="1596628136091" duration="18200000" />
       <workItem from="1596730123783" duration="3872000" />
       <workItem from="1596737603100" duration="3716000" />
-      <workItem from="1596810436109" duration="5563000" />
+      <workItem from="1596810436109" duration="6311000" />
+      <workItem from="1596877843654" duration="677000" />
+      <workItem from="1596908971227" duration="1290000" />
+      <workItem from="1597681895064" duration="2172000" />
+      <workItem from="1597734573757" duration="1443000" />
+      <workItem from="1597945909932" duration="1135000" />
+      <workItem from="1598030652442" duration="785000" />
+      <workItem from="1598623941469" duration="31000" />
+      <workItem from="1598895253306" duration="1799000" />
+      <workItem from="1598960847364" duration="3050000" />
+      <workItem from="1599113787864" duration="4653000" />
+      <workItem from="1599120888366" duration="2325000" />
     </task>
     <task id="LOCAL-00001" summary="Displayed books on index. Closes #3">
       <created>1595338052435</created>
@@ -384,7 +404,21 @@
       <option name="project" value="LOCAL" />
       <updated>1596739145223</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="Updated routes">
+      <created>1596816916404</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1596816916405</updated>
+    </task>
+    <task id="LOCAL-00034" summary="Refactor Web config routes">
+      <created>1596816963845</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1596816963845</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -406,8 +440,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Implemented findByTitle for Books. Closes #7" />
-    <MESSAGE value="Implemented findByAuthor/ fix . Closes #16" />
     <MESSAGE value="Implemented Swagger2 . Closes #22" />
     <MESSAGE value="fixex" />
     <MESSAGE value="upd" />
@@ -431,7 +463,9 @@
     <MESSAGE value="Added Category CRUD endpoints" />
     <MESSAGE value="Refactoring" />
     <MESSAGE value="Refactoring path in RequestMapping" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactoring path in RequestMapping" />
+    <MESSAGE value="Updated routes" />
+    <MESSAGE value="Refactor Web config routes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor Web config routes" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="WindowStateProjectService">
@@ -451,10 +485,11 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="552" y="178" width="815" height="684" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040/-1280.0.1280.1024@0.0.1920.1040" timestamp="1596097426509" />
-    <state x="694" y="228" width="880" height="582" key="#com.intellij.ide.util.MemberChooser" timestamp="1596731329436">
+    <state x="694" y="228" width="880" height="582" key="#com.intellij.ide.util.MemberChooser" timestamp="1599122305541">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="694" y="228" width="880" height="582" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/-1280.0.1280.1024@0.0.1920.1040" timestamp="1596731329436" />
+    <state x="694" y="228" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/1920.53.1280.1024@0.0.1920.1040" timestamp="1599122305541" />
     <state x="553" y="445" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1596477503086">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -471,59 +506,69 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="266" key="#com.intellij.refactoring.typeMigration.ui.FailedConversionsDialog/0.0.1920.1040/-1280.0.1280.1024@0.0.1920.1040" timestamp="1596540476720" />
-    <state x="585" y="40" width="753" height="970" key="CommitChangelistDialog2" timestamp="1596816910587">
+    <state x="585" y="40" width="753" height="970" key="CommitChangelistDialog2" timestamp="1596816962186">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="585" y="40" width="753" height="970" key="CommitChangelistDialog2/0.0.1920.1040/-1280.0.1280.1024@0.0.1920.1040" timestamp="1596816910587" />
+    <state x="585" y="40" width="753" height="970" key="CommitChangelistDialog2/0.0.1920.1040/-1280.0.1280.1024@0.0.1920.1040" timestamp="1596816962186" />
     <state width="482" height="466" key="DebuggerActiveHint" timestamp="1596039137789">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="482" height="466" key="DebuggerActiveHint/0.0.1920.1040/-1280.0.1280.1024@0.0.1920.1040" timestamp="1596039137789" />
-    <state x="184" y="85" width="1536" height="861" key="DiffContextDialog" timestamp="1596741747854">
+    <state x="184" y="85" width="1536" height="861" key="DiffContextDialog" timestamp="1599113920907">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="184" y="85" width="1536" height="861" key="DiffContextDialog/0.0.1920.1040/-1280.0.1280.1024@0.0.1920.1040" timestamp="1596741747854" />
-    <state x="740" y="274" key="FileChooserDialogImpl" timestamp="1596814747939">
+    <state x="184" y="85" width="1536" height="861" key="DiffContextDialog/0.0.1920.1040/1920.53.1280.1024@0.0.1920.1040" timestamp="1599113920907" />
+    <state x="740" y="274" key="FileChooserDialogImpl" timestamp="1599116869363">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="-787" y="270" key="FileChooserDialogImpl/0.0.1920.1040/-1280.0.1280.1024@-1280.0.1280.1024" timestamp="1595090406702" />
     <state x="740" y="274" key="FileChooserDialogImpl/0.0.1920.1040/-1280.0.1280.1024@0.0.1920.1040" timestamp="1596814747939" />
+    <state x="740" y="274" key="FileChooserDialogImpl/0.0.1920.1040/1920.53.1280.1024@0.0.1920.1040" timestamp="1599116869363" />
     <state x="830" y="413" width="562" height="214" key="Github.ShareDialog" timestamp="1595315648740">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="830" y="413" width="562" height="214" key="Github.ShareDialog/0.0.1920.1040/-1280.0.1280.1024@0.0.1920.1040" timestamp="1595315648740" />
-    <state width="1742" height="242" key="GridCell.Tab.0.bottom" timestamp="1596816430985">
+    <state width="1877" height="254" key="GridCell.Tab.0.bottom" timestamp="1599123181981">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1742" height="242" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1280.0.1280.1024@0.0.1920.1040" timestamp="1596816430985" />
-    <state width="1742" height="242" key="GridCell.Tab.0.center" timestamp="1596816430984">
+    <state width="1877" height="254" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.53.1280.1024@0.0.1920.1040" timestamp="1599123181981" />
+    <state width="1877" height="254" key="GridCell.Tab.0.center" timestamp="1599123181980">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1742" height="242" key="GridCell.Tab.0.center/0.0.1920.1040/-1280.0.1280.1024@0.0.1920.1040" timestamp="1596816430984" />
-    <state width="1742" height="242" key="GridCell.Tab.0.left" timestamp="1596816430984">
+    <state width="1877" height="254" key="GridCell.Tab.0.center/0.0.1920.1040/1920.53.1280.1024@0.0.1920.1040" timestamp="1599123181980" />
+    <state width="1877" height="254" key="GridCell.Tab.0.left" timestamp="1599123181980">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1742" height="242" key="GridCell.Tab.0.left/0.0.1920.1040/-1280.0.1280.1024@0.0.1920.1040" timestamp="1596816430984" />
-    <state width="1742" height="242" key="GridCell.Tab.0.right" timestamp="1596816430985">
+    <state width="1877" height="254" key="GridCell.Tab.0.left/0.0.1920.1040/1920.53.1280.1024@0.0.1920.1040" timestamp="1599123181980" />
+    <state width="1877" height="254" key="GridCell.Tab.0.right" timestamp="1599123181981">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1742" height="242" key="GridCell.Tab.0.right/0.0.1920.1040/-1280.0.1280.1024@0.0.1920.1040" timestamp="1596816430985" />
-    <state width="1742" height="242" key="GridCell.Tab.1.bottom" timestamp="1596816430985">
+    <state width="1877" height="254" key="GridCell.Tab.0.right/0.0.1920.1040/1920.53.1280.1024@0.0.1920.1040" timestamp="1599123181981" />
+    <state width="1877" height="254" key="GridCell.Tab.1.bottom" timestamp="1599123181981">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1742" height="242" key="GridCell.Tab.1.bottom/0.0.1920.1040/-1280.0.1280.1024@0.0.1920.1040" timestamp="1596816430985" />
-    <state width="1742" height="242" key="GridCell.Tab.1.center" timestamp="1596816430985">
+    <state width="1877" height="254" key="GridCell.Tab.1.bottom/0.0.1920.1040/1920.53.1280.1024@0.0.1920.1040" timestamp="1599123181981" />
+    <state width="1877" height="254" key="GridCell.Tab.1.center" timestamp="1599123181981">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1742" height="242" key="GridCell.Tab.1.center/0.0.1920.1040/-1280.0.1280.1024@0.0.1920.1040" timestamp="1596816430985" />
-    <state width="1742" height="242" key="GridCell.Tab.1.left" timestamp="1596816430985">
+    <state width="1877" height="254" key="GridCell.Tab.1.center/0.0.1920.1040/1920.53.1280.1024@0.0.1920.1040" timestamp="1599123181981" />
+    <state width="1877" height="254" key="GridCell.Tab.1.left" timestamp="1599123181981">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1742" height="242" key="GridCell.Tab.1.left/0.0.1920.1040/-1280.0.1280.1024@0.0.1920.1040" timestamp="1596816430985" />
-    <state width="1742" height="242" key="GridCell.Tab.1.right" timestamp="1596816430985">
+    <state width="1877" height="254" key="GridCell.Tab.1.left/0.0.1920.1040/1920.53.1280.1024@0.0.1920.1040" timestamp="1599123181981" />
+    <state width="1877" height="254" key="GridCell.Tab.1.right" timestamp="1599123181981">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1742" height="242" key="GridCell.Tab.1.right/0.0.1920.1040/-1280.0.1280.1024@0.0.1920.1040" timestamp="1596816430985" />
+    <state width="1877" height="254" key="GridCell.Tab.1.right/0.0.1920.1040/1920.53.1280.1024@0.0.1920.1040" timestamp="1599123181981" />
     <state width="1877" height="256" key="GridCell.Tab.2.bottom" timestamp="1596655114413">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -561,10 +606,10 @@
     </state>
     <state x="-1039" y="89" width="916" height="708" key="SettingsEditor/0.0.1920.1040/-1280.0.1280.1024@-1280.0.1280.1024" timestamp="1596288072200" />
     <state x="361" y="90" width="1362" height="708" key="SettingsEditor/0.0.1920.1040/-1280.0.1280.1024@0.0.1920.1040" timestamp="1595435213769" />
-    <state x="552" y="252" key="Vcs.Push.Dialog.v2" timestamp="1596816919185">
+    <state x="552" y="252" key="Vcs.Push.Dialog.v2" timestamp="1596816973597">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040/-1280.0.1280.1024@0.0.1920.1040" timestamp="1596816919185" />
+    <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040/-1280.0.1280.1024@0.0.1920.1040" timestamp="1596816973597" />
     <state x="822" y="407" width="326" height="257" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1" timestamp="1596635082240">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -573,10 +618,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="818" y="257" key="com.intellij.database.view.ui.DbObjectDialog/0.0.1920.1040/-1280.0.1280.1024@0.0.1920.1040" timestamp="1596096466064" />
-    <state x="769" y="436" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1596741728440">
+    <state x="769" y="436" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1596817005313">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="769" y="436" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040/-1280.0.1280.1024@0.0.1920.1040" timestamp="1596741728440" />
+    <state x="769" y="436" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040/-1280.0.1280.1024@0.0.1920.1040" timestamp="1596817005313" />
     <state x="521" y="255" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1596523370855">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -589,19 +634,21 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="741" y="232" key="git4idea.branch.GitSmartOperationDialog/0.0.1920.1040/-1280.0.1280.1024@0.0.1920.1040" timestamp="1595512277327" />
-    <state x="342" y="221" key="new project wizard" timestamp="1595876577220">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="-1235" y="218" key="new project wizard" timestamp="1597778252312">
+      <screen x="-1280" y="0" width="1280" height="1024" />
     </state>
+    <state x="-1235" y="218" key="new project wizard/0.0.1920.1040/-1280.0.1280.1024@-1280.0.1280.1024" timestamp="1597778252312" />
     <state x="342" y="221" key="new project wizard/0.0.1920.1040/-1280.0.1280.1024@0.0.1920.1040" timestamp="1595876577220" />
     <state x="616" y="240" key="run.anything.popup" timestamp="1595873768592">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="616" y="240" key="run.anything.popup/0.0.1920.1040/-1280.0.1280.1024@0.0.1920.1040" timestamp="1595873768592" />
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1596644730827">
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1599123056066">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="-865" y="222" width="672" height="668" key="search.everywhere.popup/0.0.1920.1040/-1280.0.1280.1024@-1280.0.1280.1024" timestamp="1595090206023" />
     <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/-1280.0.1280.1024@0.0.1920.1040" timestamp="1596644730827" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/1920.53.1280.1024@0.0.1920.1040" timestamp="1599123056066" />
     <state x="790" y="310" key="svn.repositoryBrowser" timestamp="1595315706050">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -616,7 +663,7 @@
       <breakpoints>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/restapi/bookstore/service/impl/BookServiceImpl.java</url>
-          <line>83</line>
+          <line>85</line>
           <option name="timeStamp" value="6" />
         </line-breakpoint>
       </breakpoints>

@@ -37,9 +37,9 @@ public class Category extends Audit {
     }
 
     public void setBooks(List<Book> books) {
-        if(books == null) {
+        if (books == null) {
             this.books = null;
-        }else {
+        } else {
             this.books = Collections.unmodifiableList(books);
         }
     }
