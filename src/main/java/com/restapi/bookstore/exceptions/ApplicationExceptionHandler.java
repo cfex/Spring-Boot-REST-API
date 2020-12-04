@@ -11,12 +11,12 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 import java.time.LocalDateTime;
 
 @ControllerAdvice
-public class ApplicationExceptionHandler  extends ResponseEntityExceptionHandler {
+public class ApplicationExceptionHandler extends ResponseEntityExceptionHandler {
 
-    @ExceptionHandler(value = {Exception.class , NullPointerException.class})
+    @ExceptionHandler(value = {Exception.class, NullPointerException.class})
     public ResponseEntity<Object> handleBaseException(Exception exception) {
         String errorMessage = exception.getMessage();
-        if(errorMessage == null) {
+        if (errorMessage == null) {
             errorMessage = exception.toString();
         }
         ApiErrorMessage apiErrorMessage = new ApiErrorMessage();
@@ -25,14 +25,14 @@ public class ApplicationExceptionHandler  extends ResponseEntityExceptionHandler
 
         return new ResponseEntity<>(
                 apiErrorMessage, new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR
-        ) ;
+        );
     }
 
     @ExceptionHandler(value = {ResourceNotFoundException.class})
     public ResponseEntity<Object> resourceNotFoundException(ResourceNotFoundException exception) {
         HttpStatus status = HttpStatus.NOT_FOUND;
         String errorMessage = exception.getLocalizedMessage();
-        if(errorMessage == null) {
+        if (errorMessage == null) {
             errorMessage = exception.toString();
         }
         ApiErrorMessage apiErrorMessage = new ApiErrorMessage();
@@ -52,7 +52,7 @@ public class ApplicationExceptionHandler  extends ResponseEntityExceptionHandler
 
         String errorMessage = exception.getLocalizedMessage();
 
-        if(errorMessage == null) {
+        if (errorMessage == null) {
             errorMessage = exception.toString();
         }
         apiErrorMessage.setMessage(errorMessage);

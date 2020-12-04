@@ -1,6 +1,7 @@
 package com.restapi.bookstore.security.config;
 
 import com.restapi.bookstore.security.UserPrincipal;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.data.domain.AuditorAware;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -11,7 +12,7 @@ import java.util.Optional;
 public class SpringSecurityAuditAwareImpl implements AuditorAware<String> {
 
     @Override
-    public Optional<String> getCurrentAuditor() {
+    public @NotNull Optional<String> getCurrentAuditor() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
         if (authentication == null || !authentication.isAuthenticated() || authentication instanceof AnonymousAuthenticationToken) {

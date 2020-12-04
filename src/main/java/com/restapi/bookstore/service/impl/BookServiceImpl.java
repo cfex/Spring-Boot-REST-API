@@ -102,7 +102,7 @@ public class BookServiceImpl implements BookService {
 
 
     @Override
-    public PageableResponse<Book> findByCategory(Long id, int page, int size)  {
+    public PageableResponse<Book> findByCategory(Long id, int page, int size) {
         ApplicationUtilities.validateRequestPageAndSize(page, size);
 
         Category category = categoryRepository.findById(id)
@@ -125,7 +125,7 @@ public class BookServiceImpl implements BookService {
     @Override
     public PageableResponse<Book> findByDescription(String description, int page, int size) {
         ApplicationUtilities.validateRequestPageAndSize(page, size);
-        Sort sort;
+
         Pageable pageable = PageRequest.of(page, size, Sort.Direction.DESC, ApplicationConstants.CREATED_AT);
 
         Page<Book> books = bookRepository.findAllByDescriptionContainingIgnoreCase(description, pageable);

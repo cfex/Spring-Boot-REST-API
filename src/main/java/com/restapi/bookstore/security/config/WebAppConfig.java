@@ -12,11 +12,9 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @AllArgsConstructor
 @EnableWebSecurity
-@EnableSwagger2
 @Configuration
 public class WebAppConfig extends WebSecurityConfigurerAdapter {
 
@@ -29,7 +27,7 @@ public class WebAppConfig extends WebSecurityConfigurerAdapter {
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                .antMatchers(HttpMethod.GET,"/api/books/**", "/api/category").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/books/**", "/api/category").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/auth/**").permitAll()
                 .antMatchers("/api/users/**").hasAnyRole("USER", "ADMIN")
                 .antMatchers("/api/admin/**").hasRole("ADMIN")

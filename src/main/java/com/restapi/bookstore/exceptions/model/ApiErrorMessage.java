@@ -9,8 +9,10 @@ import org.springframework.http.HttpStatus;
 
 import java.time.LocalDateTime;
 
-@AllArgsConstructor @NoArgsConstructor
-@Getter @Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
 public class ApiErrorMessage {
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd hh:mm:ss")

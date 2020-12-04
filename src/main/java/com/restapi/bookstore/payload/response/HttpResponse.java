@@ -16,7 +16,7 @@ import java.io.Serializable;
 @Setter
 public class HttpResponse implements Serializable {
 
-    @JsonProperty("succcess")
+    @JsonProperty("success")
     private Boolean success;
 
     @JsonProperty("message")

@@ -36,7 +36,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public PageableResponse<User> listAll(int page, int size) {
         ApplicationUtilities.validateRequestPageAndSize(page, size);
-        Sort sort;
+
         Pageable pageable = PageRequest.of(page, size, Sort.Direction.DESC, CREATED_AT);
         Page<User> users = userRepository.findAll(pageable);
         List<User> content = users.getNumberOfElements() == 0 ? Collections.emptyList() : users.getContent();
